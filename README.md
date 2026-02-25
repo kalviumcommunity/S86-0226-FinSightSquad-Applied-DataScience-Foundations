@@ -1,101 +1,106 @@
-# Milestone 01: Jupyter Notebook Workspace Orientation
+
+# Milestone: Jupyter Kernel Control & Debugging
 
 ## Objective
 
-This milestone ensures correct setup and understanding of the Jupyter Notebook workspace before beginning Data Science tasks.
+This milestone focuses on understanding how Jupyter kernels work and how to control them safely. Many notebook issues are not caused by code errors, but by kernel state—cells running out of order, stale variables, or long-running executions that were never interrupted.
 
-The goal is to confidently:
+By completing this milestone, you will be able to:
 
-- Launch Jupyter Notebook from the terminal
-- Understand the Jupyter Home interface
-- Navigate directories intentionally
-- Create and manage notebooks correctly
+- Identify when a kernel is running, idle, or stuck
+- Restart a kernel intentionally and rerun cells
+- Interrupt execution without breaking the notebook
+- Maintain a clean, predictable notebook state
+
+## Why This Matters
+
+Common notebook problems include:
+- Code working once but failing later
+- Variables mysteriously changing values
+- Cells depending on hidden execution order
+- Kernels freezing during execution
+
+These issues usually come from poor kernel management, not bad logic.
+
+This milestone ensures that:
+- Your notebooks behave consistently
+- You can debug issues systematically
+- Reviewers and teammates can reproduce your results
+
+Think of the kernel as the engine of your notebook—this lesson teaches you how to control it.
 
 ---
 
-## 1. Launching Jupyter Notebook
+## What You Are Expected to Do
 
-### Step 1: Activate Conda Environment
+This is a kernel control and debugging milestone, not a data analysis task.
 
-```bash
-conda activate datasci
-Step 2: Navigate to Project Directory
-cd C:\Users\YourName\Documents\DataScienceSprint
-Step 3: Launch Jupyter Notebook
-jupyter notebook
+You are expected to:
+- Run cells in sequence
+- Restart the kernel and observe effects
+- Interrupt a running cell
+- Understand when and why to use each action
 
-Jupyter successfully opened in the browser without errors.
+No datasets or analysis are required.
 
-2. Understanding the Jupyter Home Interface
+### 1. Running Cells and Understanding Execution Order
+Run notebook cells deliberately.
 
-The Home interface includes:
+You should:
+- Execute cells one by one
+- Observe how outputs depend on execution order
+- Understand that the kernel remembers variables until restarted
 
-File and folder listing panel
+### 2. Restarting the Kernel
+Restart the kernel to reset the notebook state.
 
-Navigation breadcrumbs
+You should:
+- Use the restart option from the Jupyter menu
+- Observe that variables and memory are cleared
+- Rerun cells from the top to restore state
 
-"New" button for creating notebooks
+### 3. Interrupting Execution
+Interrupt a running cell safely.
 
-Upload button for adding files
+You should:
+- Start a deliberately long-running or infinite operation
+- Interrupt execution using the interrupt option
+- Confirm that the notebook remains responsive afterward
 
-File type indicators (folders, notebooks, scripts)
+### 4. Recognizing When to Restart vs Interrupt
+Understand the difference between restarting and interrupting.
 
-This confirms understanding of the workspace layout.
+You should:
+- Identify scenarios where interrupting is sufficient
+- Identify scenarios where a full restart is safer
+- Explain the trade-offs between the two actions
 
-3. Folder Navigation
+---
 
-Successfully:
+## Submission Guidelines
 
-Navigated into project folders
+- Submit your work as a Pull Request (if required)
+- Submit the video link as instructed
+- Video should be approximately 2 minutes
+- Video must be screen-facing and clearly visible
 
-Used breadcrumbs to return to parent directories
+---
 
-Verified project root directory
+## Bonus Content
 
-Confirmed notebook save location
+This section is optional, and learners who want to explore the topics covered so far can utilize the materials provided below.
 
-4. Creating and Running a Notebook
+- Stop the Jupyter Kernel if Kernel is not responding
+- Kernel Keeps dying and restarting
+- Kernel Restarting
 
-Created:
+---
 
-milestone_01_workspace_setup.ipynb
+## Tips
 
-Verified:
+- This milestone is about control and predictability
+- Do not perform EDA or data loading
+- Keep examples simple and intentional
+- Always restart and rerun before final submission in real projects
 
-Correct Python kernel is active
-
-Notebook executes properly
-
-Test cell executed:
-
-print("Jupyter is working correctly.")
-
-Output confirmed execution functionality.
-
-5. Notebook File Management
-
-Practiced:
-
-Renaming notebook
-
-Saving changes
-
-Closing notebook safely
-
-Reopening from Home interface
-
-Conclusion
-
-This milestone confirms:
-
-Proper environment activation
-
-Correct directory management
-
-Understanding of Jupyter interface
-
-Intentional notebook creation
-
-Basic notebook management skills
-
-The workspace is now correctly configured for upcoming Data Science tasks.
+Knowing how to manage kernels prevents subtle, hard-to-debug errors. This milestone ensures you can control notebook execution confidently throughout the Data Science sprint.
