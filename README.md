@@ -91,6 +91,41 @@ This milestone confirms:
 Proper environment activation
 
 Correct directory management
+## Data Organization Milestone: Raw / Processed / Output
+
+This milestone ensures your project separates data by lifecycle stage to keep work reproducible and auditable.
+
+What to do:
+
+- Keep original, untouched inputs in `data/raw/` (treat as read-only).
+- Save cleaned or transformed datasets in `data/processed/`.
+- Save plots, reports, and models in `outputs/` (subfolders: `figures/`, `reports/`).
+- Never write processed or output files into `data/raw/`.
+
+Files added to support this milestone:
+
+- `scripts/organize_data.py` — small example script showing a safe read-from-raw, write-to-processed pattern.
+- `scripts/README_MILESTONE_DATA_ORG.md` — quick usage notes for the script.
+- `outputs/VIDEO_INSTRUCTIONS.txt` — short recording checklist.
+- `outputs/video_link.txt` — placeholder to paste your video link.
+
+Recording the short (~2 minute) video:
+
+- Show the `data/raw/` folder and explain why raw data is immutable.
+- Show the `data/processed/` folder and explain naming for processing stages.
+- Show the `outputs/` folder and describe output artifact types.
+- State how your scripts enforce one-directional flow (read raw → write processed/output).
+- Save the video, upload it where instructed by your course, and paste the link into `outputs/video_link.txt`.
+
+Submission checklist:
+
+- [ ] Raw files remain unchanged in `data/raw/`.
+- [ ] Processed files live only in `data/processed/`.
+- [ ] Outputs live in `outputs/` (figures, reports, models).
+- [ ] Add your video link to `outputs/video_link.txt` and submit as required.
+
+This section documents the data hygiene expectations for reproducible data science.
+
 
 Understanding of Jupyter interface
 
