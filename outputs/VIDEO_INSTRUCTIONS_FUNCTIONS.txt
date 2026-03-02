@@ -1,0 +1,7 @@
+Record a ~2 minute screen-capture showing:
+
+- Defining at least one function (use `def`).
+- Calling the function with arguments.
+- Explaining the execution flow and scope briefly.
+
+Save your recording, upload it where instructed by your course, and place a shareable link in `outputs/video_link.txt`.
