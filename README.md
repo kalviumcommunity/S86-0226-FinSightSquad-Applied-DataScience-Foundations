@@ -134,3 +134,141 @@ Intentional notebook creation
 Basic notebook management skills
 
 The workspace is now correctly configured for upcoming Data Science tasks.
+
+---
+
+## Conditional Statements for Data Logic Milestone
+
+This milestone focuses on writing conditional statements to control program flow based on data-driven logic. Conditions allow your code to make decisions, which is essential for validation, branching workflows, and real-world data handling.
+
+### Objective
+
+Understanding conditional logic is a core programming skill that enables you to move beyond linear scripts and build intelligent behavior into your code.
+
+Learn to:
+
+- Understand how conditional statements work in Python
+- Use `if`, `elif`, and `else` correctly
+- Write conditions based on numeric and string data
+- Combine conditions using logical operators (`and`, `or`, `not`)
+- Apply conditionals to simple data scenarios
+
+### Why This Matters
+
+Common beginner issues include:
+
+- Code that runs but produces incorrect results
+- Conditions that never trigger as expected
+- Incorrect indentation causing logic bugs
+- Overly complex or unreadable condition blocks
+
+This milestone ensures that:
+
+- Your code behaves predictably
+- Decisions are based on correct data checks
+- Edge cases are handled intentionally
+- Logic is readable and maintainable
+
+### Run the Script
+
+```bash
+python scripts/conditional_statements_milestone.py
+```
+
+### What the Script Demonstrates
+
+1. **Basic if Statements**
+   - Simple numeric and string conditions
+   - Understanding when code blocks execute
+   - Budget checks, status verification
+
+2. **if-else Decision Branching**
+   - Handling both true and false paths
+   - Account balance validation
+   - Age eligibility checks
+   - Transaction type routing
+
+3. **Multiple Conditions with elif**
+   - Credit score evaluation (4 tiers)
+   - Income bracket classification
+   - Investment risk level assessment
+   - Sequential condition checking
+
+4. **Logical Operators**
+   - `and` - Both conditions must be true (premium feature eligibility)
+   - `or` - At least one condition must be true (fee waiver qualification)
+   - `not` - Invert boolean values (account accessibility)
+   - Combined operators (loan application approval)
+
+5. **Real-World Data Validation**
+   - Portfolio allocation validator (must sum to 100%)
+   - Transaction authorization (limit checks, balance verification)
+   - Data quality checking (completeness validation)
+
+### Learning Outcomes
+
+After completing this milestone, you will be able to:
+
+- Write clear and correct conditional statements
+- Control program flow based on data values
+- Handle multiple conditions safely
+- Avoid common logic and indentation errors
+- Use conditionals confidently in data workflows
+- Implement data validation and business logic
+
+### Files Added
+
+- `scripts/conditional_statements_milestone.py` — comprehensive examples of if, elif, else, and logical operators
+- `scripts/README_MILESTONE_CONDITIONAL.md` — detailed documentation and learning guide
+- `outputs/VIDEO_INSTRUCTIONS_CONDITIONAL.txt` — video recording checklist with step-by-step guidance
+
+### Video Requirements (~2 minutes)
+
+Record a screen-capture video demonstrating:
+
+1. A simple `if` statement with explanation
+2. An `if-else` example showing both branches
+3. An `if-elif-else` example with multiple conditions
+4. Use of logical operators (`and`, `or`, or `not`)
+5. Explanation of why conditions behave as they do
+
+**Submission:**
+- Video should be approximately 2 minutes
+- Screen must be clearly visible
+- Explain concepts verbally as you demonstrate
+- Upload video and paste link into `outputs/video_link.txt`
+
+### Key Concepts Covered
+
+**Comparison Operators:** `==`, `!=`, `>`, `<`, `>=`, `<=`
+
+**Logical Operators:** `and`, `or`, `not`
+
+**Control Flow:** `if`, `elif`, `else`
+
+**Best Practices:**
+- Proper indentation (critical in Python)
+- Readable condition ordering
+- Avoiding overlapping conditions
+- Clear variable naming in conditions
+
+### Submission Checklist
+
+- [ ] Run `scripts/conditional_statements_milestone.py` successfully
+- [ ] Understand all five sections of the output
+- [ ] Record ~2 minute video covering all requirements
+- [ ] Upload video and add link to `outputs/video_link.txt`
+- [ ] Review `scripts/README_MILESTONE_CONDITIONAL.md` for additional guidance
+- [ ] Submit Pull Request (if required by course)
+
+### Next Steps
+
+After mastering conditional statements, you'll be ready to:
+
+- Build more complex data validation logic
+- Implement business rules in data workflows
+- Create interactive decision-making programs
+- Combine conditionals with loops for iteration
+- Handle edge cases in data processing
+
+**Remember:** Conditional logic is the backbone of intelligent programs. This milestone ensures you can write clear, correct decisions in Python confidently.
