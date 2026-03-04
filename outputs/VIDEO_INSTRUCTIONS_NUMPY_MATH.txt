@@ -1,0 +1,88 @@
+VIDEO INSTRUCTIONS - NUMPY MATH OPERATIONS MILESTONE
+=====================================================
+
+Duration: Approximately 2 minutes
+Format: Screen-capture with visible code and terminal output
+
+REQUIRED CONTENT CHECKLIST:
+============================
+
+✓ 1. INTRODUCTION (5-10 seconds)
+   - State your name and what you are demonstrating
+   - "Hi, I'm [Name]. Today I'll show basic math operations on NumPy arrays."
+
+✓ 2. ELEMENT-WISE ARRAY OPERATIONS (30-35 seconds)
+   - Show: Creating two NumPy arrays of the same shape
+   - Demonstrate: array1 + array2 (addition)
+   - Demonstrate: array1 - array2 (subtraction)
+   - Demonstrate: array1 * array2 (multiplication)
+   - Demonstrate: array1 / array2 (division)
+   - Explain: "Each operation applies to corresponding elements automatically."
+
+✓ 3. SCALAR OPERATIONS (20-25 seconds)
+   - Show: array + 50
+   - Show: array * 1.10
+   - Explain: "A single value (scalar) is applied to every element in the array."
+   - Explain: "This replaces loops and is much more concise."
+
+✓ 4. NUMPY VS PYTHON LIST COMPARISON (20-25 seconds)
+   - Show Python list: [10, 20, 30] + [1, 2, 3] → concatenation, NOT math
+   - Show NumPy array: np.array([10,20,30]) + np.array([1,2,3]) → [11, 22, 33]
+   - Explain: "This is why we use NumPy for numerical computation."
+
+✓ 5. SHAPE MISMATCH ERROR DEMO (15-20 seconds)
+   - Show: Attempting to add arrays of different shapes
+   - Show the ValueError raised by NumPy
+   - Explain: "Both arrays must have the same shape for element-wise operations."
+
+SCRIPT STRUCTURE SUGGESTION:
+=============================
+
+Opening (5 seconds):
+"Hi, I'm demonstrating NumPy math operations — the foundation of efficient
+numerical computing in Python."
+
+Section 1 - Element-wise Operations (30 seconds):
+"I'll create two arrays — income and expenses — and perform arithmetic."
+[Show: income = np.array([3000, 4500, 5200, 4100, 6000])]
+[Show: expenses = np.array([1200, 1800, 2100, 1600, 2400])]
+"Addition gives total outflow, subtraction gives net savings."
+[Show: income + expenses, income - expenses]
+"Multiplication and division work the same way, element by element."
+[Show: income * expenses, expenses / income]
+
+Section 2 - Scalar Operations (20 seconds):
+"Now I'll apply a scalar to an array."
+[Show: prices = np.array([100, 200, 150, 300, 250])]
+[Show: prices + 50, prices * 1.10]
+"The value 50 is added to every single element — no loop required."
+
+Section 3 - List vs Array Comparison (20 seconds):
+"Watch what happens with Python lists versus NumPy arrays."
+[Show: [10,20,30] + [1,2,3] → [10, 20, 30, 1, 2, 3]]
+[Show: np.array([10,20,30]) + np.array([1,2,3]) → [11, 22, 33]]
+"Lists concatenate; arrays compute. That's the critical difference."
+
+Section 4 - Shape Mismatch (15 seconds):
+"Finally, arrays must have compatible shapes. A mismatch raises a ValueError."
+[Show: np.array([1,2,3]) + np.array([10,20]) → ValueError]
+"NumPy tells you immediately so you can fix the shape."
+
+Closing (5 seconds):
+"Those are the core NumPy math operations — element-wise, scalar, and
+the key differences from Python lists. Thanks for watching."
+
+RECORDING TIPS:
+===============
+- Run scripts/numpy_math_operations_milestone.py in the terminal
+- Zoom in on the output so it is clearly readable
+- Pause briefly on each result to give viewers time to read
+- Keep the font size large (at least 14pt in the terminal)
+- Make sure both the code and output are visible at the same time
+
+SUBMISSION:
+===========
+- Upload your recording to the designated platform
+- Paste the video link in: outputs/video_link.txt
+- Video must be approximately 2 minutes (no more than 3 minutes)
+- Screen must be visible and audio/narration must be clear
