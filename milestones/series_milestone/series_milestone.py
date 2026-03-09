@@ -55,6 +55,43 @@ def alignment_example():
     print()
 
 
+def dataframe_inspection_example(csv_path=None):
+    """Load a CSV and demonstrate head(), info(), and describe().
+
+    If csv_path is None, try the project's `data/transactions.csv`,
+    otherwise fall back to the first sample file available.
+    """
+    import os
+
+    if csv_path is None:
+        default = os.path.join(os.path.dirname(__file__), "..", "..", "data", "transactions.csv")
+        default = os.path.normpath(default)
+        if os.path.exists(default):
+            csv_path = default
+        else:
+            # fallback to a sample in the data folder (relative to repo root)
+            sample = os.path.join(os.path.dirname(__file__), "..", "..", "data", "sample_01_standard.csv")
+            csv_path = os.path.normpath(sample)
+
+    print("\n--- DataFrame inspection example ---")
+    print(f"Loading: {csv_path}")
+    try:
+        df = pd.read_csv(csv_path)
+    except Exception as e:
+        print("Failed to load CSV:", e)
+        return
+
+    print("\n.head() preview:")
+    print(df.head())
+
+    print("\n.info() summary:")
+    # info() writes to stdout directly
+    df.info()
+
+    print("\n.describe() statistics:")
+    print(df.describe(include='number'))
+
+
 if __name__ == "__main__":
     print("--- Pandas Series milestone examples ---\n")
     series_from_list()
@@ -62,4 +99,8 @@ if __name__ == "__main__":
     labeled_index_examples()
     compare_with_numpy()
     alignment_example()
+    # Run the DataFrame inspection example too (helpful for this milestone)
+    dataframe_inspection_example()
+
     print("--- End ---")
+    

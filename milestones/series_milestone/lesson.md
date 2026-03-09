@@ -37,3 +37,30 @@ Quick tips
 - If you create a Series from a list, Pandas assigns a default integer index (0..n-1).
 - Use custom indexes for more meaningful labels: e.g., dates, categories, or IDs.
 - Use Series as building blocks for DataFrames later.
+
+DataFrame inspection (head, info, describe)
+
+- Purpose: quickly understand structure, types, and numeric summaries before cleaning.
+- Use `head()` to preview the first rows and check column alignment and sample values.
+- Use `info()` to view column names, data types, non-null counts, and memory usage.
+- Use `describe()` to get count, mean, std, min/max and percentiles for numeric columns.
+
+How to run the inspection example
+
+1. Run the example script which loads a CSV and prints the outputs:
+
+```bash
+python milestones/series_milestone/series_milestone.py
+```
+
+2. Observe the terminal output:
+- The `.head()` section shows sample rows and column headers.
+- The `.info()` section lists dtypes and non-null counts — look for unexpected object types or missing values.
+- The `.describe()` section provides numeric distributions; large differences between min/max/percentiles may indicate outliers.
+
+Video guidance (~2 minutes)
+
+- Demonstrate running the script and show each inspection step (`head()`, `info()`, `describe()`).
+- Explain in one sentence what each method reveals and one example observation (e.g., a column with many nulls).
+- Keep the screen capture clear and the terminal font large enough to read.
+
