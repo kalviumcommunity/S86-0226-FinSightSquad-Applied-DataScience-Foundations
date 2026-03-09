@@ -64,3 +64,18 @@ Video guidance (~2 minutes)
 - Explain in one sentence what each method reveals and one example observation (e.g., a column with many nulls).
 - Keep the screen capture clear and the terminal font large enough to read.
 
+Missing-values detection (isnull, sum, mean)
+
+- Purpose: locate and quantify missing data before cleaning.
+- Use `df.isnull()` to obtain a boolean mask of missing entries.
+- Use `df.isnull().sum()` to count missing values per column.
+- Use `df.isnull().mean()` to view proportions of missing values per column.
+- Use `df[df.isnull().any(axis=1)]` to inspect rows that contain any missing values.
+
+How to demonstrate (in the video)
+
+1. Run the example script so the missing-values section prints.
+2. Point out the per-column counts and proportions; mention columns with non-zero counts.
+3. Open a few rows returned by `df[df.isnull().any(axis=1)]` and explain why row-level context matters.
+
+
