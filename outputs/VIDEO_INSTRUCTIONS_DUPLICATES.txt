@@ -1,0 +1,18 @@
+VIDEO WALKTHROUGH GUIDE (~2 MINUTES)
+
+Milestone Topic: Identifying and Removing Duplicate Records in Pandas
+
+Recording checklist:
+1. Open and run scripts/duplicate_records_milestone.py.
+2. Show duplicate detection with duplicated() for full rows.
+3. Show subset-based duplicate detection and explain chosen columns.
+4. Show removal with drop_duplicates() and keep strategy.
+5. Compare shape before and after deduplication.
+6. Recheck remaining duplicates to verify data quality.
+7. Explain why deduplication matters for accurate analysis.
+
+Presentation tips:
+- Keep your screen zoomed for readability.
+- Speak clearly while each output section is visible.
+- Focus on process: detect -> inspect -> remove -> verify.
+- Keep the recording close to 2 minutes.
