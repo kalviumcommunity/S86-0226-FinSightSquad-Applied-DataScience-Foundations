@@ -78,4 +78,152 @@ How to demonstrate (in the video)
 2. Point out the per-column counts and proportions; mention columns with non-zero counts.
 3. Open a few rows returned by `df[df.isnull().any(axis=1)]` and explain why row-level context matters.
 
+---
+
+## Standardizing Column Names and Data Formats
+
+### Why standardization matters
+
+Real-world datasets arrive from many sources — bank exports, spreadsheets, forms — each with its own naming style.
+Inconsistent column names cause errors when merging datasets, make code harder to read, and create subtle bugs in analysis pipelines.
+Standardizing early costs very little but saves significant debugging time later.
+
+Common problems:
+- `"Transaction Date"`, `"TransactionDate"`, `"txn_date"` all mean the same thing but can't be merged automatically.
+- `"Amount"` stored as a string `"1,500.00"` silently blocks arithmetic.
+- Mixed case categories like `"Shopping"`, `"SHOPPING"`, `"shopping"` are treated as different groups.
+
+---
+
+### 1. Standardizing column names
+
+Goal: every column name should be lowercase, words separated by underscores, no special characters.
+
+```python
+# Strip whitespace, lowercase, replace non-alphanumeric runs with underscore
+df.columns = (
+    df.columns
+    .str.strip()
+    .str.lower()
+    .str.replace(r"[^a-z0-9]+", "_", regex=True)
+    .str.strip("_")
+)
+```
+
+Before: `["Date", "Narration", "Dr/Cr", "  Balance  ", "Ref# No"]`
+After : `["date", "narration", "dr_cr", "balance", "ref_no"]`
+
+---
+
+### 2. Choosing a naming convention — snake_case
+
+Rules for consistent column names:
+
+- Use **snake_case**: all lowercase, words joined with `_`.
+- Spell out abbreviations where possible (`transaction_date` not `txn_dt`).
+- Keep names short but self-explanatory (`amount`, `transaction_type`, `account_balance`).
+- Avoid leading digits (`1st_amount` → `first_amount`).
+
+```python
+import re
+
+def to_snake_case(name: str) -> str:
+    name = name.strip()
+    name = re.sub(r"(?<=[a-z0-9])([A-Z])", r"_\1", name)  # CamelCase → camel_case
+    name = name.lower()
+    name = re.sub(r"[^a-z0-9]+", "_", name)
+    return name.strip("_")
+
+df.columns = [to_snake_case(c) for c in df.columns]
+```
+
+---
+
+### 3. Standardizing text data
+
+Goal: consistent case, no extra whitespace, uniform category values.
+
+```python
+# Lowercase + strip for category-like columns
+df["category"] = df["category"].str.strip().str.lower()
+
+# Title case + strip for human-readable descriptions
+df["description"] = df["description"].str.strip().str.title()
+
+# Lowercase for status/flag columns
+df["status"] = df["status"].str.strip().str.lower()
+```
+
+Before `category` column: `["  shopping ", "FOOD", "food", "SHOPPING"]`
+After                    : `["shopping",   "food", "food", "shopping"]` — 2 unique values, not 4.
+
+---
+
+### 4. Standardizing numeric and date formats
+
+**Numbers stored as strings** (commas, currency symbols, extra spaces):
+
+```python
+df["amount"] = (
+    df["amount"]
+    .str.replace(",", "", regex=False)   # remove thousand-separator commas
+    .str.strip()                          # remove surrounding whitespace
+    .pipe(pd.to_numeric, errors="coerce") # cast; NaN for unparseable values
+)
+```
+
+**Dates from multiple formats → ISO 8601 (`YYYY-MM-DD`)**:
+
+```python
+df["date"] = pd.to_datetime(df["date"], errors="coerce").dt.strftime("%Y-%m-%d")
+```
+
+`pd.to_datetime` recognises `"01/01/2023"`, `"2023-01-01"`, `"January 1 2023"` and more.
+Use `errors="coerce"` so unparseable entries become `NaT` instead of raising an exception.
+
+---
+
+### 5. Full standardization pipeline
+
+Apply all steps together near the top of any cleaning script:
+
+```python
+def standardize(df: pd.DataFrame) -> pd.DataFrame:
+    # 1. Column names
+    df.columns = (
+        df.columns.str.strip().str.lower()
+        .str.replace(r"[^a-z0-9]+", "_", regex=True).str.strip("_")
+    )
+    # 2. Dates
+    for col in [c for c in df.columns if "date" in c]:
+        df[col] = pd.to_datetime(df[col], errors="coerce").dt.strftime("%Y-%m-%d")
+    # 3. Strip text columns
+    for col in df.select_dtypes(include="object").columns:
+        df[col] = df[col].str.strip()
+    # 4. Numeric columns
+    for col in [c for c in df.columns if any(h in c for h in ["amount", "balance"])]:
+        df[col] = pd.to_numeric(
+            df[col].astype(str).str.replace(",", "", regex=False), errors="coerce"
+        )
+    return df
+```
+
+---
+
+### Key takeaways
+
+- Standardize **first** — before filtering, merging, or analysing.
+- Use `str.strip()`, `str.lower()`, `str.replace()` (with regex where needed) for column names.
+- `pd.to_numeric(..., errors="coerce")` and `pd.to_datetime(..., errors="coerce")` are safe, non-crashing converters.
+- Consistent naming conventions (`snake_case`) make column references predictable across the entire project.
+
+### How to run the standardization examples
+
+```bash
+python milestones/series_milestone/series_milestone.py
+```
+
+Observe the `--- Standardization milestone examples ---` section in the output.
+Compare the BEFORE and AFTER blocks to see the effect of each transformation.
+
 
