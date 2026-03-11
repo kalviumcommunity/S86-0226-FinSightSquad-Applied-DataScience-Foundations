@@ -1,0 +1,61 @@
+VIDEO WALKTHROUGH INSTRUCTIONS - COMPARING DISTRIBUTIONS MILESTONE
+==================================================================
+
+Duration: Approximately 2 minutes
+Format: Screen-capture video
+
+REQUIRED CONTENT:
+-----------------
+
+Your video must demonstrate all of the following:
+
+1. INTRODUCTION (20 seconds)
+   - Explain that you are comparing distributions across multiple columns
+   - State why this matters for exploratory data analysis
+   - Mention that comparison gives context beyond single-column analysis
+
+2. CENTRAL TENDENCY COMPARISON (35 seconds)
+   - Show means and medians for multiple numeric columns
+   - Explain one meaningful difference across columns
+   - Mention how mean vs median can hint at skew
+
+3. SPREAD AND VARIABILITY COMPARISON (40 seconds)
+   - Show range and standard deviation across columns
+   - Explain which column appears more volatile and which is more stable
+   - Mention relative variability (for example coefficient of variation)
+
+4. PATTERNS AND ANOMALIES (25 seconds)
+   - Show any conceptually unusual values you flagged
+   - Explain that anomalies are signals for deeper investigation
+   - Avoid claiming final conclusions from one check
+
+TECHNICAL REQUIREMENTS:
+-----------------------
+
+* Screen must be clearly visible
+* Code and terminal output must be readable
+* Audio should be clear and understandable
+* Show actual script execution
+* Video length: 1.5 to 2.5 minutes
+
+SUGGESTED TALK TRACK:
+---------------------
+
+"I am demonstrating how to compare distributions across multiple DataFrame
+columns. First, I compare central tendency using mean and median. Next, I
+compare spread using range and standard deviation, then relative variability
+to account for scale differences. Finally, I flag potentially unusual values
+as questions for deeper analysis. This comparison-oriented approach helps avoid
+misleading conclusions from isolated columns."
+
+SUBMISSION:
+-----------
+
+1. Upload your video to the platform required by your course
+2. Ensure the link is accessible
+3. Paste the link into outputs/video_link.txt
+4. Submit as instructed
+
+==================================================================
+Good luck with your video recording!
+==================================================================
