@@ -1,0 +1,359 @@
+VIDEO INSTRUCTIONS: BOXPLOT VISUALIZATION MILESTONE
+==================================================
+
+OVERVIEW
+--------
+Create a ~2 minute screen-capture video demonstrating your understanding of 
+visualizing data distributions using boxplots in Python with Pandas and Matplotlib.
+
+This video should show that you can:
+- Create boxplots for numeric columns
+- Interpret boxplot components (median, quartiles, whiskers, outliers)
+- Identify and explain outliers
+- Compare distributions across multiple categories
+- Explain when and why to use boxplots
+
+REQUIRED DURATION
+-----------------
+Approximately 2 minutes (strict requirement)
+- Minimum: 1 minute 45 seconds
+- Maximum: 2 minutes 15 seconds
+
+Keep it concise and focused on demonstrating your understanding of boxplots.
+
+VIDEO CONTENT REQUIREMENTS
+---------------------------
+
+PART 1: SINGLE COLUMN BOXPLOT (45 seconds)
+-------------------------------------------
+- Open Python/Jupyter environment
+- Load the transactions DataFrame
+- Display the Amount column data
+- Create a boxplot for the Amount column
+- Point to and explain each component:
+  * The box (IQR - middle 50% of data)
+  * The red line (median)
+  * The whiskers (extend to min/max within 1.5 × IQR)
+  * Any dots (outliers beyond whiskers)
+- Show summary statistics alongside the plot
+
+Example narration:
+"I'll create a boxplot for the transaction Amount column. This plot shows 
+the distribution summary. The box represents the interquartile range - the 
+middle 50% of data. The red line inside is the median at $X. The whiskers 
+extend to the minimum and maximum values within 1.5 times the IQR. Any points 
+beyond the whiskers are potential outliers."
+
+Key points to mention:
+- What the median value is ($X)
+- What Q1 and Q3 values are
+- What IQR represents (spread of middle 50%)
+- Whether outliers are present
+
+
+PART 2: COMPARING ACROSS CATEGORIES (45 seconds)
+-------------------------------------------------
+- Create side-by-side boxplots comparing transaction amounts by Category
+- Display the comparison plot clearly
+- Point out differences between categories:
+  * Which category has highest/lowest median
+  * Which category has most variability (tallest box)
+  * Which categories have outliers
+- Explain what these differences mean
+
+Example narration:
+"Now I'll compare transaction amounts across different categories using 
+side-by-side boxplots. We can see that Healthcare has the highest median 
+at $X, while Transport has the lowest at $Y. The Groceries category shows 
+more variability with a taller box, indicating more spread in spending. 
+Entertainment has an outlier here, which might represent an unusually large 
+purchase."
+
+Key comparisons to make:
+- Median differences between categories
+- Variability differences (box heights)
+- Presence of outliers in specific categories
+- What the patterns suggest about the data
+
+
+PART 3: INTERPRETATION AND INSIGHTS (30 seconds)
+-------------------------------------------------
+- Explain key insights from the boxplots
+- Discuss how boxplots help in EDA
+- Show the saved plot files
+- Explain when to use boxplots vs other visualizations
+
+Example narration:
+"From these boxplots, I learned that spending patterns vary significantly 
+by category. Boxplots are excellent for EDA because they show distribution 
+summaries and outliers at a glance. They complement histograms by making 
+comparisons easier. I've saved these plots for further analysis. Boxplots 
+are especially useful when you need to compare distributions across multiple 
+groups or quickly identify unusual values."
+
+Key insights to mention:
+- Main findings from the visualizations
+- How boxplots helped understand the data
+- When boxplots are most useful
+- How they complement other EDA tools
+
+
+TECHNICAL REQUIREMENTS
+-----------------------
+
+Code to Show:
+- Import statements (pandas, matplotlib)
+- Loading the DataFrame
+- Creating boxplot: plt.boxplot() or df.boxplot()
+- Customizing plot (title, labels, colors)
+- Saving the figure
+
+Console Output to Show:
+- DataFrame head() or sample rows
+- Summary statistics (.describe())
+- Median, Q1, Q3, IQR values
+- Outlier detection results
+
+Plots to Display:
+1. Single column boxplot (Amount)
+2. Multi-category comparison boxplot
+3. Clear labels and readable axes
+
+Must Demonstrate:
+✓ Creating a basic boxplot
+✓ Explaining boxplot components
+✓ Identifying the median line
+✓ Understanding IQR (box height)
+✓ Recognizing outliers (dots beyond whiskers)
+✓ Comparing multiple distributions
+✓ Interpreting what the plots reveal
+
+
+DEMONSTRATION FLOW
+------------------
+
+Opening (5 seconds):
+"Today I'll demonstrate visualizing data distributions using boxplots 
+in Python."
+
+Section 1 - Single Boxplot (45 seconds):
+1. Show the dataset (2-3 rows)
+2. Run code to create boxplot
+3. Display the plot
+4. Point to and explain: box, median, whiskers, outliers
+5. State key values (median, Q1, Q3, IQR)
+
+Section 2 - Comparison (45 seconds):
+1. Run code for multi-category boxplots
+2. Display the comparison plot
+3. Compare medians across categories
+4. Point out differences in variability
+5. Discuss any outliers observed
+
+Section 3 - Wrap-up (30 seconds):
+1. Summarize key insights
+2. Explain value of boxplots in EDA
+3. Show saved figure files
+4. Mention when to use boxplots
+
+Closing (5 seconds):
+"This completes my demonstration of boxplot visualization for EDA."
+
+
+NARRATION TIPS
+--------------
+
+DO:
+✓ Speak clearly and at a moderate pace
+✓ Point to plot components as you explain them
+✓ Use specific numbers from your data
+✓ Explain WHY boxplots are useful
+✓ Mention both technical terms and plain language
+✓ Show enthusiasm for what you're demonstrating
+✓ Zoom in if text is small
+✓ Highlight outliers if present
+
+DON'T:
+✗ Rush through explanations
+✗ Use vague terms like "this thing here"
+✗ Skip explaining plot components
+✗ Forget to mention the median
+✗ Ignore outliers if they exist
+✗ Read code line by line
+✗ Go over 2:15 minutes
+✗ Speak without showing relevant visuals
+
+
+KEY CONCEPTS TO EXPLAIN
+------------------------
+
+1. Boxplot Components:
+   - Box = middle 50% of data (Q1 to Q3)
+   - Line in box = median (50th percentile)
+   - Whiskers = extent to min/max (within 1.5 × IQR)
+   - Dots = outliers beyond whiskers
+
+2. IQR (Interquartile Range):
+   - Calculated as Q3 - Q1
+   - Represents spread of middle 50%
+   - Used to identify outliers
+
+3. Outliers:
+   - Points beyond 1.5 × IQR from Q1 or Q3
+   - Not always errors (need investigation)
+   - May represent unusual but valid values
+
+4. Why Boxplots Matter:
+   - Quick distribution summary
+   - Easy multi-group comparison
+   - Clear outlier identification
+   - Shows both center and spread
+
+
+TECHNICAL SETUP
+---------------
+
+Before Recording:
+□ Close unnecessary applications
+□ Clear your Python environment or restart kernel
+□ Have the script ready to run
+□ Test the code to ensure it works
+□ Adjust font size for visibility
+□ Prepare your narration points
+□ Check audio quality
+
+During Recording:
+□ Show full screen or relevant windows only
+□ Run code in logical sections
+□ Pause briefly to let plots display fully
+□ Keep mouse movements smooth
+□ Highlight important parts of plots
+□ Show both code and output clearly
+
+
+COMMON MISTAKES TO AVOID
+-------------------------
+
+1. Not explaining what the box represents
+   ✓ Fix: "The box shows the middle 50% of data from Q1 to Q3"
+
+2. Ignoring the median line
+   ✓ Fix: "The red line at $X is the median, the middle value"
+
+3. Not mentioning IQR
+   ✓ Fix: "The IQR is $Y, showing the spread of typical values"
+
+4. Failing to interpret outliers
+   ✓ Fix: "This outlier at $Z may represent an unusual large purchase"
+
+5. Not comparing categories effectively
+   ✓ Fix: "Category A has a higher median and more variability than B"
+
+6. Going over time limit
+   ✓ Fix: Practice and time yourself before final recording
+
+
+SAMPLE SCRIPT TEMPLATE
+----------------------
+
+[0:00-0:05] Opening
+"Hi, I'll demonstrate visualizing data distributions using boxplots."
+
+[0:05-0:50] Single Boxplot
+"First, I'll load the transaction data and create a boxplot for the Amount 
+column. [Run code, show plot]. This boxplot summarizes the distribution. 
+The box spans from Q1 at $X to Q3 at $Y, containing the middle 50% of data. 
+The red line at $Z represents the median. The whiskers extend to the minimum 
+at $A and maximum at $B. [Point to outliers if any] These dots are outliers 
+beyond 1.5 times the IQR."
+
+[0:50-1:35] Comparison
+"Now let's compare amounts across categories. [Run code, show comparison plot]. 
+We can see significant differences. Healthcare has the highest median at $X, 
+while Transport has the lowest at $Y. Groceries shows more variability - 
+notice the taller box, indicating a wider spread in spending. Entertainment 
+has an outlier here at $Z, which might represent a concert ticket or special 
+event."
+
+[1:35-2:05] Insights & Wrap-up
+"These boxplots reveal spending patterns vary by category. Boxplots are 
+powerful for EDA because they summarize distributions clearly and make 
+comparisons easy. They complement histograms by highlighting outliers and 
+making side-by-side comparison straightforward. Here are the saved figures 
+[show files]. Boxplots are especially useful when you need to quickly assess 
+distribution center, spread, and outliers across multiple groups."
+
+[2:05-2:10] Closing
+"This completes my boxplot visualization demonstration. Thank you!"
+
+
+SUBMISSION CHECKLIST
+--------------------
+
+Before Submitting:
+□ Video is 1:45 - 2:15 minutes long
+□ Screen is clearly visible
+□ Audio is clear (no background noise)
+□ All required sections are covered
+□ Code execution is shown
+□ Plots are clearly displayed
+□ Boxplot components are explained
+□ Median and quartiles are mentioned
+□ Outliers are discussed (if present)
+□ Comparison across categories is shown
+□ Insights are clearly explained
+□ File is in accepted format (MP4, MOV, etc.)
+□ Video is uploaded and link is ready
+
+
+SUCCESS CRITERIA
+----------------
+
+Your video demonstrates mastery when it shows:
+
+✅ Correct creation of boxplots
+✅ Clear explanation of boxplot structure
+✅ Accurate interpretation of median and quartiles
+✅ Understanding of IQR concept
+✅ Ability to identify outliers
+✅ Effective comparison across categories
+✅ Insight into what the distributions reveal
+✅ Understanding of when to use boxplots
+✅ Professional presentation
+✅ Time management (within 2 minutes)
+
+
+EXAMPLE METRICS TO MENTION
+---------------------------
+
+For Single Boxplot:
+- "The median transaction amount is $125.50"
+- "Q1 is at $85 and Q3 is at $165"
+- "The IQR is $80, showing moderate variability"
+- "No outliers detected in this distribution"
+
+For Comparisons:
+- "Healthcare has the highest median at $200"
+- "Transport shows the least variability with an IQR of $30"
+- "Entertainment has an outlier at $300"
+- "Groceries has the widest spread with an IQR of $95"
+
+
+FINAL TIPS
+----------
+
+1. Practice your demonstration 2-3 times before recording
+2. Time yourself to ensure you stay within limits
+3. Speak naturally - don't memorize word-for-word
+4. Point to plot elements as you explain them
+5. Use specific numbers from YOUR actual data
+6. Show confidence and understanding
+7. If you make a small mistake, keep going
+8. End with a clear concluding statement
+9. Double-check video quality before submitting
+10. Submit early to avoid last-minute issues
+
+
+Good luck with your video demonstration!
+Remember: Show understanding, not perfection. Clear explanation matters more 
+than fancy production values.
