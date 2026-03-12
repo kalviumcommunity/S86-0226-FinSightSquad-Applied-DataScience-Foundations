@@ -226,4 +226,36 @@ python milestones/series_milestone/series_milestone.py
 Observe the `--- Standardization milestone examples ---` section in the output.
 Compare the BEFORE and AFTER blocks to see the effect of each transformation.
 
+---
+
+## Scatter Plots — Exploring Relationships (New)
+
+Goal
+- Visualize relationships between two numeric variables using scatter plots.
+
+What to do
+- Load a dataset into a Pandas DataFrame (the example script auto-selects a sample CSV).
+- Choose two numeric columns (the script will pick two if you don't).
+- Run the `scatter_plot_example()` function to produce a scatter plot.
+
+How to run the scatter example
+
+```bash
+python milestones/series_milestone/series_milestone.py
+# or from Python import and call:
+from milestones.series_milestone.series_milestone import scatter_plot_example
+scatter_plot_example()
+```
+
+What to observe
+- Each point represents one observation; x and y positions show the two variable values.
+- Identify positive, negative, or no clear trend.
+- Look for clusters (groups of points) and outliers (isolated points).
+- Use the visual to form next-steps: transformations, filtering, or deeper per-cluster analysis.
+
+Quick tips
+- Label axes clearly; include units if available.
+- For dense plots use alpha transparency (`alpha < 1.0`) to reveal overplotting.
+- Save the plot to PNG in headless environments by passing `save_path` to `scatter_plot_example()`.
+
 

@@ -3,6 +3,7 @@ Run: python milestones/series_milestone/series_milestone.py
 """
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def series_from_list():
@@ -339,6 +340,92 @@ def full_standardization_pipeline(csv_path=None):
     print()
 
 
+# ---------------------------------------------------------------------------
+# Scatter plot milestone
+# ---------------------------------------------------------------------------
+def scatter_plot_example(csv_path=None, x_col=None, y_col=None, save_path=None):
+    """Create a scatter plot for two numeric columns from a CSV sample.
+
+    If columns are not provided, the function will attempt to pick two numeric
+    columns from the project's `data/transactions.csv` or a sample CSV.
+    """
+    import os
+
+    if csv_path is None:
+        candidates = [
+            os.path.join(os.path.dirname(__file__), "..", "..", "data", "transactions.csv"),
+            os.path.join(os.path.dirname(__file__), "..", "..", "data", "sample_01_standard.csv"),
+            os.path.join(os.path.dirname(__file__), "..", "..", "data", "sample_05_highvolume.csv"),
+        ]
+        csv_path = next((os.path.normpath(p) for p in candidates if os.path.exists(os.path.normpath(p))), None)
+        if csv_path is None:
+            print("No sample CSV found for scatter plot — skipping.")
+            return
+
+    print(f"\n--- Scatter plot example (loading: {csv_path}) ---")
+    try:
+        df = pd.read_csv(csv_path)
+    except Exception as e:
+        print("Failed to load CSV:", e)
+        return
+
+    # Coerce numeric-like columns to numeric where possible
+    for c in df.columns:
+        df[c] = pd.to_numeric(df[c].astype(str).str.replace(",", "", regex=False), errors="ignore")
+
+    numeric_cols = df.select_dtypes(include=["number"]).columns.tolist()
+    if len(numeric_cols) < 2:
+        print("Not enough numeric columns available for a scatter plot.")
+        print("Numeric columns found:", numeric_cols)
+        return
+
+    if x_col is None or y_col is None:
+        # choose two numeric columns with the most non-null values
+        numeric_cols_sorted = sorted(numeric_cols, key=lambda c: df[c].notnull().sum(), reverse=True)
+        x_col, y_col = numeric_cols_sorted[0], numeric_cols_sorted[1]
+
+    print(f"Selected columns — x: {x_col}, y: {y_col}")
+
+    plot_df = df[[x_col, y_col]].dropna()
+    if plot_df.empty:
+        print("No paired non-null observations found for the selected columns.")
+        return
+
+    plt.figure(figsize=(7, 5))
+    plt.scatter(plot_df[x_col], plot_df[y_col], alpha=0.6, edgecolors="w", s=50)
+    plt.xlabel(x_col)
+    plt.ylabel(y_col)
+    plt.title(f"Scatter plot: {y_col} vs {x_col}")
+    plt.grid(alpha=0.2)
+
+    if save_path:
+        plt.savefig(save_path, bbox_inches="tight")
+        print(f"Saved scatter plot to: {save_path}")
+    else:
+        # Show plot when run interactively
+        try:
+            plt.show()
+        except Exception:
+            print("Plot created (headless environment) — pass `save_path` to save PNG")
+
+    # Print brief interpretation guidance
+    x_vals = plot_df[x_col]
+    y_vals = plot_df[y_col]
+    corr = None
+    try:
+        corr = x_vals.corr(y_vals)
+    except Exception:
+        corr = None
+
+    print("Observations:")
+    print(f"  - Number of points: {len(plot_df)}")
+    if corr is not None:
+        print(f"  - Pearson-like correlation (informal): {corr:.3f}")
+    print("  - Look for positive/negative trend, clusters, and outliers visually.")
+    print("  - Use this plot to decide next steps (transformations, segmentation, or deeper checks).")
+    print()
+
+
 if __name__ == "__main__":
     print("--- Pandas Series milestone examples ---\n")
     series_from_list()
@@ -357,6 +444,12 @@ if __name__ == "__main__":
     standardize_text_data()
     standardize_numeric_date_formats()
     full_standardization_pipeline()
+
+    # Scatter plot example (selects two numeric columns automatically)
+    try:
+        scatter_plot_example()
+    except Exception as e:
+        print("Scatter plot example failed:", e)
 
     print("--- End ---")
     

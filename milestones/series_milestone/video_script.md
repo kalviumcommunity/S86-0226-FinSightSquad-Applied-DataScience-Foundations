@@ -67,3 +67,31 @@ Recording checklist
 - Zoom in on the dtypes output so object → float64 changes are visible.
 - Keep terminal font at 14pt or larger.
 - Video should be approximately 2 minutes; no padding needed.
+
+---
+
+2-minute Video Script — Scatter Plots (New)
+
+Total length: ~2:00
+
+0:00–0:10 (Intro)
+- "Hi — in two minutes I'll show how to create and interpret a scatter plot to explore relationships between numeric variables."
+
+0:10–0:50 (Create the scatter plot)
+- Open `series_milestone.py` and point to `scatter_plot_example()`.
+- Run the script or call the function; show the produced scatter plot (or the saved PNG).
+- Narration: "We load a sample CSV, select two numeric columns, and plot one on the x-axis and the other on the y-axis. Each point is one observation."
+
+0:50–1:25 (Interpretation)
+- Point out whether there's a positive, negative, or no clear relationship.
+- Highlight any clusters or obvious outliers and say what they might indicate (data-entry errors, rare events, separate segments).
+
+1:25–1:50 (Practical tips)
+- Suggest using transparency (`alpha`) for dense data, log-transforming skewed axes, and filtering by category to inspect subgroups.
+
+1:50–2:00 (Wrap-up)
+- "Scatter plots are the first step in exploring relationships — use them to guide deeper analysis like transformations, segmentation, or formal correlation tests."
+
+Recording checklist
+- Show the plot clearly (terminal + image); mention which columns are used.
+- Keep narration concise and point to trends, clusters, and outliers.
