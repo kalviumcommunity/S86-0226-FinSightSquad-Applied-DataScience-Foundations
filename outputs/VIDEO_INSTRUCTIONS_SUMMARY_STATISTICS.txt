@@ -1,0 +1,366 @@
+VIDEO INSTRUCTIONS: SUMMARY STATISTICS MILESTONE
+================================================
+
+OVERVIEW
+--------
+Create a ~2 minute screen-capture video demonstrating your understanding of 
+computing and interpreting summary statistics for Pandas DataFrame columns.
+
+This video should show that you can:
+- Select numeric columns from a DataFrame
+- Compute basic summary statistics
+- Interpret what the statistics mean
+- Compare statistics across different groups
+
+REQUIRED DURATION
+-----------------
+Approximately 2 minutes (strict requirement)
+- Minimum: 1 minute 45 seconds
+- Maximum: 2 minutes 15 seconds
+
+Keep it concise and focused on demonstrating your understanding.
+
+VIDEO CONTENT REQUIREMENTS
+---------------------------
+
+PART 1: SELECT A COLUMN (20 seconds)
+- Open Python/Jupyter environment
+- Load the transactions DataFrame
+- Select the 'Amount' numeric column
+- Display first 5-10 values
+- Show the column data type
+
+Example narration:
+"First, I'll load the transactions data and select the Amount column 
+to analyze. As you can see, this column contains numeric values 
+representing transaction amounts."
+
+PART 2: COMPUTE STATISTICS (40 seconds)
+- Calculate mean (average)
+- Calculate median (middle value)
+- Calculate min and max
+- Calculate standard deviation
+- Show using .describe() method
+- Clearly display all output
+
+Example narration:
+"Now I'll compute the summary statistics. The mean is $X, which is 
+the average transaction. The median is $Y, which is the middle value. 
+The minimum transaction is $A and the maximum is $B. The standard 
+deviation of $Z tells us about the variability in transaction amounts."
+
+PART 3: INTERPRET RESULTS (40 seconds)
+- Compare mean vs median
+- Explain what the comparison reveals
+- Mention what standard deviation indicates
+- Discuss the range (max - min)
+- Explain practical meaning
+
+Example narration:
+"Looking at the mean versus median, I notice the mean is [higher/lower] 
+than the median, which suggests [right/left]-skewed data. The standard 
+deviation indicates [low/high] variability. This means transactions 
+are [fairly consistent / quite varied] in amount."
+
+PART 4: COMPARE WITH ANOTHER CATEGORY (20 seconds)
+- Use groupby to show statistics by category
+- Compare two categories briefly
+- Mention one key difference
+
+Example narration:
+"Finally, let's compare across categories. Groceries have an average 
+of $X while Entertainment averages $Y. This shows that [category] 
+typically has [higher/lower] transaction amounts."
+
+TECHNICAL REQUIREMENTS
+-----------------------
+
+Screen Recording Setup:
+- Full screen of your terminal/IDE/Jupyter notebook
+- Ensure all text is clearly readable
+- No camera required (screen-only recording)
+- Good audio quality for narration
+
+Code to Demonstrate:
+```python
+import pandas as pd
+
+# Load data
+df = pd.read_csv('sample_transactions.csv')
+
+# Part 1: Select column
+amount = df['Amount']
+print(amount.head())
+
+# Part 2: Compute statistics
+print(f"Mean: ${amount.mean():.2f}")
+print(f"Median: ${amount.median():.2f}")
+print(f"Min: ${amount.min():.2f}")
+print(f"Max: ${amount.max():.2f}")
+print(f"Std: ${amount.std():.2f}")
+print(amount.describe())
+
+# Part 3: Interpret (show comparison)
+print(f"Mean vs Median: ${amount.mean():.2f} vs ${amount.median():.2f}")
+
+# Part 4: Compare categories
+print(df.groupby('Category')['Amount'].mean())
+```
+
+Output Requirements:
+- All statistics should be clearly visible
+- Numbers should be formatted properly (e.g., $123.45)
+- Output should not scroll off screen too quickly
+- Pause briefly on important results
+
+WHAT TO AVOID
+-------------
+
+❌ Don't:
+- Exceed 2 minutes 15 seconds
+- Include setup/installation steps
+- Show error messages or troubleshooting
+- Read directly from documentation
+- Use complex jargon without explanation
+- Show data loading errors
+- Have poor audio quality
+- Record with tiny, unreadable text
+
+✓ Do:
+- Keep narration clear and concise
+- Explain statistics in simple terms
+- Show confidence in interpretation
+- Ensure all code runs successfully before recording
+- Test audio before final recording
+- Use appropriate zoom/font size
+- Practice at least once before final recording
+
+NARRATION TIPS
+--------------
+
+Good Narration Style:
+- Speak clearly and at moderate pace
+- Explain what you're doing and why
+- Use simple, non-technical language
+- Connect statistics to real meaning
+- Sound confident but natural
+
+Example Opening:
+"Hello, in this video I'll demonstrate computing summary statistics 
+on a financial transactions dataset. I'll show how to calculate and 
+interpret key statistics like mean, median, and standard deviation."
+
+Example Closing:
+"These summary statistics show that [key insight]. Understanding these 
+basic statistics is essential before doing any deeper analysis. 
+Thank you for watching."
+
+RECORDING TOOLS (Suggestions)
+------------------------------
+
+Windows:
+- Xbox Game Bar (Win + G)
+- OBS Studio (free)
+- ShareX (free)
+- Camtasia (paid)
+
+Mac:
+- QuickTime Player (built-in)
+- OBS Studio (free)
+- ScreenFlow (paid)
+
+Online:
+- Loom (free tier available)
+- Screencast-O-Matic
+
+Choose any tool you're comfortable with.
+
+SUBMISSION CHECKLIST
+--------------------
+
+Before Submitting Your Video:
+
+Technical Checks:
+[ ] Video is approximately 2 minutes long
+[ ] Screen is fully visible and text is readable
+[ ] Audio is clear and understandable
+[ ] All code runs without errors
+[ ] All statistics are displayed clearly
+
+Content Checks:
+[ ] Shows selecting a numeric column
+[ ] Computes mean, median, min, max, std
+[ ] Shows using .describe() method
+[ ] Interprets what statistics mean
+[ ] Compares mean vs median
+[ ] Shows group-by comparison
+[ ] Explains practical meaning
+
+Narration Checks:
+[ ] Opening introduction present
+[ ] Clear explanation throughout
+[ ] Statistics interpreted correctly
+[ ] Closing statement included
+[ ] No long pauses or dead air
+
+SUBMISSION PROCESS
+------------------
+
+1. Record your video following the requirements above
+
+2. Review your video to ensure:
+   - All requirements are met
+   - Video and audio quality are good
+   - Duration is approximately 2 minutes
+   - Content is clear and accurate
+
+3. Upload your video to:
+   [Platform specified by instructor]
+   - YouTube (unlisted/public)
+   - Google Drive (shared link)
+   - Vimeo
+   - Other platform as instructed
+
+4. Submit the video link:
+   [Method specified by instructor]
+   - Learning management system
+   - Google Form
+   - Email
+   - Other submission method
+
+5. Verify your link works:
+   - Test the link in an incognito browser
+   - Ensure viewing permissions are correct
+   - Confirm video plays properly
+
+GRADING CRITERIA (Reference)
+-----------------------------
+
+Your video will likely be evaluated on:
+
+1. Technical Completeness (40%)
+   - All required statistics computed
+   - Code runs successfully
+   - Output displayed clearly
+
+2. Interpretation Quality (30%)
+   - Correct understanding of statistics
+   - Meaningful interpretation
+   - Practical explanations
+
+3. Presentation (20%)
+   - Clear narration
+   - Appropriate pacing
+   - Professional delivery
+   - Meets time requirement
+
+4. Comparison/Analysis (10%)
+   - Group-by demonstration
+   - Comparative insights
+   - Analytical thinking
+
+COMMON MISTAKES TO AVOID
+-------------------------
+
+Mistake 1: Too Long or Too Short
+- Practice timing before final recording
+- Trim unnecessary pauses
+- Focus on core requirements
+
+Mistake 2: Poor Audio Quality
+- Test microphone before recording
+- Minimize background noise
+- Speak clearly and at good volume
+
+Mistake 3: Unreadable Screen
+- Increase font size in terminal/IDE
+- Use full screen mode
+- Avoid cluttered workspace
+
+Mistake 4: No Interpretation
+- Don't just show numbers
+- Explain what they mean
+- Provide context and insight
+
+Mistake 5: Code Errors on Screen
+- Test all code before recording
+- Have data file ready
+- Know your script well
+
+EXAMPLE SCRIPT OUTLINE
+-----------------------
+
+Time 0:00-0:10 (10 sec)
+- Introduce yourself and the task
+- "I'll demonstrate computing summary statistics on transaction data"
+
+Time 0:10-0:30 (20 sec)
+- Load DataFrame
+- Select Amount column
+- Show first few values
+
+Time 0:30-1:10 (40 sec)
+- Compute mean, median, min, max, std
+- Show .describe() output
+- Clearly display results
+
+Time 1:10-1:50 (40 sec)
+- Compare mean vs median
+- Explain what it reveals
+- Discuss standard deviation
+- Interpret range
+
+Time 1:50-2:00 (10 sec)
+- Show groupby comparison
+- Mention key difference
+- Closing statement
+
+Total: 2:00 minutes
+
+FINAL TIPS
+----------
+
+1. Prepare your environment:
+   - Close unnecessary applications
+   - Have data file ready
+   - Test code works 100%
+   - Clear terminal/notebook
+
+2. Practice run:
+   - Do at least one full practice recording
+   - Time yourself
+   - Check audio/video quality
+   - Refine your script
+
+3. During recording:
+   - Stay calm and speak clearly
+   - If you make a mistake, pause and re-record
+   - Don't rush through explanations
+   - Show confidence
+
+4. After recording:
+   - Watch your entire video
+   - Check for issues
+   - Verify all requirements met
+   - Test the submission link
+
+5. Professional touches:
+   - Clean desktop background
+   - Hide personal information
+   - Use professional language
+   - Be enthusiastic but natural
+
+GOOD LUCK!
+----------
+
+Remember: This video demonstrates your understanding of a fundamental 
+data science skill. Show that you can not only compute statistics, 
+but also interpret them meaningfully.
+
+Focus on:
+- Clarity
+- Accuracy
+- Interpretation
+- Professionalism
+
+You've got this! 🎯

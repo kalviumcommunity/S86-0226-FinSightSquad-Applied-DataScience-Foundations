@@ -1,0 +1,122 @@
+VIDEO WALKTHROUGH INSTRUCTIONS - VECTORIZED OPERATIONS MILESTONE
+================================================================
+
+Duration: Approximately 2 minutes
+Format: Screen-capture video
+
+REQUIRED CONTENT:
+-----------------
+
+Your video must demonstrate all of the following:
+
+1. LOOP-BASED EXAMPLE (30 seconds)
+   - Show a simple Python loop operating on a NumPy array
+   - Run the code and display the output
+   - Explain what the loop is doing step by step
+   - Mention the limitations (verbosity, performance)
+
+2. VECTORIZED EQUIVALENT (30 seconds)
+   - Show the same operation rewritten using vectorization
+   - Run the code and display the output
+   - Explain how it works without explicit iteration
+   - Highlight that results are identical
+
+3. BENEFITS EXPLANATION (40 seconds)
+   - Compare code readability: fewer lines, clearer intent
+   - Discuss performance benefits (show timing comparison if possible)
+   - Explain how vectorization scales to large datasets
+   - Mention that this is a NumPy best practice
+
+4. OUTPUT COMPARISON (20 seconds)
+   - Show side-by-side or sequential output of both approaches
+   - Confirm that results are identical
+   - Demonstrate a performance benchmark showing speedup
+   - Conclude with key takeaway message
+
+TECHNICAL REQUIREMENTS:
+-----------------------
+
+✓ Screen must be clearly visible
+✓ Code font size should be readable
+✓ Terminal/IDE output should be visible
+✓ Audio should be clear (use a good microphone)
+✓ Show actual execution, not just code
+✓ Video length: 1.5 - 2.5 minutes
+
+SUGGESTED EXAMPLES TO DEMONSTRATE:
+----------------------------------
+
+Example 1: Squaring array elements
+   Loop: for i in range(len(arr)): result[i] = arr[i] ** 2
+   Vectorized: result = arr ** 2
+
+Example 2: Element-wise arithmetic
+   Loop: for i in range(len(arr)): result[i] = arr1[i] + arr2[i]
+   Vectorized: result = arr1 + arr2
+
+Example 3: Conditional counting
+   Loop: count = 0; for x in arr: if x > threshold: count += 1
+   Vectorized: count = np.sum(arr > threshold)
+
+PRESENTATION TIPS:
+------------------
+
+• Start by stating the purpose: "Demonstrating vectorized operations in NumPy"
+• Use simple, clear examples (avoid overly complex operations)
+• Speak clearly and at a moderate pace
+• Point out key differences between approaches
+• End with a clear conclusion about when and why to use vectorization
+• Test your recording setup before the final take
+
+WHAT TO AVOID:
+--------------
+
+✗ Don't spend too much time on setup or imports
+✗ Avoid complex mathematical operations that distract from the concept
+✗ Don't make the video too long (keep it under 2.5 minutes)
+✗ Avoid poor audio quality or inaudible speech
+✗ Don't skip showing actual output/execution
+
+SUBMISSION:
+-----------
+
+After recording your video:
+1. Upload to a video hosting platform (YouTube, Vimeo, Google Drive, etc.)
+2. Ensure the video is accessible (public or unlisted with link)
+3. Submit the link as per your course instructions
+4. Add the link to the outputs/video_link.txt file
+
+SAMPLE SCRIPT OUTLINE:
+----------------------
+
+[0:00-0:10] Introduction
+"Hi, I'm demonstrating vectorized operations in NumPy, which allow us to 
+perform operations on entire arrays without explicit loops."
+
+[0:10-0:40] Loop-Based Example
+"First, let's look at a traditional loop-based approach. Here I'm squaring 
+each element of an array using a for loop. As you can see, this requires 
+explicit iteration and indexing. Let me run this..."
+[Show output]
+
+[0:40-1:10] Vectorized Example
+"Now, here's the same operation using NumPy vectorization. Notice how we 
+can square the entire array with a single expression. Let me run this..."
+[Show output]
+"The results are identical, but the code is much cleaner."
+
+[1:10-1:50] Benefits
+"Let's compare performance. As you can see from this timing comparison, 
+the vectorized version is significantly faster - in this case, about 
+[mention speedup]x faster. This difference becomes even more dramatic 
+with larger datasets. The vectorized code is also more readable and 
+follows NumPy best practices."
+
+[1:50-2:00] Conclusion
+"In summary, vectorization eliminates loops, improves performance, and 
+makes code more readable. This is a fundamental concept for efficient 
+numerical computing in Python. Thank you!"
+
+================================================================
+Good luck with your video recording!
+================================================================
