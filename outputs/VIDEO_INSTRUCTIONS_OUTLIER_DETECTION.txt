@@ -1,0 +1,159 @@
+VIDEO INSTRUCTIONS: OUTLIER DETECTION MILESTONE
+================================================
+
+OVERVIEW
+--------
+Create a ~2 minute screen-capture video demonstrating your understanding of 
+detecting outliers using visual inspection and simple statistical rules in Python.
+
+This video should show that you can:
+- Load a dataset and identify a numeric column to inspect
+- Use a boxplot to visually detect potential outliers
+- Apply a simple IQR rule to flag outliers programmatically
+- Interpret and explain why flagged values stand out
+- Discuss whether flagged values are errors or valid observations
+
+REQUIRED DURATION
+-----------------
+Approximately 2 minutes (strict requirement)
+- Minimum: 1 minute 45 seconds
+- Maximum: 2 minutes 15 seconds
+
+Keep it focused, clear, and analytical.
+
+VIDEO CONTENT REQUIREMENTS
+---------------------------
+
+PART 1: LOAD DATA AND INSPECT (20 seconds)
+-------------------------------------------
+- Open your Python/Jupyter environment
+- Load the transactions CSV into a DataFrame
+- Show the Amount column with .describe()
+- Point out the min, max, and compare mean vs median
+
+Example narration:
+"I'll start by loading the transaction dataset and looking at the Amount 
+column. The describe() output shows a mean of $X and a median of $Y. The 
+fact that the mean is higher than the median suggests there may be some 
+large values pulling the average up — possible outliers."
+
+PART 2: VISUAL INSPECTION — BOXPLOT (40 seconds)
+--------------------------------------------------
+- Create a boxplot for the Amount column
+- Point to the box (IQR), the median line, and the whiskers
+- Highlight any dots beyond the whiskers (these are flagged outliers)
+- Explain what the whisker bounds represent
+
+Example narration:
+"Now I'll create a boxplot. The box shows the middle 50% of the data — 
+from Q1 at $A to Q3 at $B. The red line inside is the median. The whiskers 
+extend to Q1 minus 1.5 times the IQR and Q3 plus 1.5 times the IQR. 
+Any point plotted as a dot beyond those whiskers is a potential outlier. 
+You can see there are [N] such points here, at $X and $Y."
+
+Key points to mention:
+- What Q1, Q3, and IQR are
+- What the whisker boundaries represent
+- How many outlier dots are visible and their approximate values
+
+PART 3: SIMPLE RULE — IQR FLAGGING (40 seconds)
+-------------------------------------------------
+- Write out the IQR rule in code (4-5 lines)
+- Print Q1, Q3, IQR, lower bound, upper bound
+- Filter the DataFrame to show flagged rows
+- Display the flagged rows clearly
+
+Example narration:
+"To apply this mathematically, I compute Q1 and Q3, then IQR equals Q3 
+minus Q1 which is $Z. The lower bound is Q1 minus 1.5 times IQR giving $L, 
+and the upper bound is Q3 plus 1.5 times IQR giving $U. Filtering the 
+DataFrame for values outside these bounds identifies [N] flagged rows — 
+amounts of $X and $Y."
+
+Code to show:
+```python
+q1 = df['Amount'].quantile(0.25)
+q3 = df['Amount'].quantile(0.75)
+iqr = q3 - q1
+lower_bound = q1 - 1.5 * iqr
+upper_bound = q3 + 1.5 * iqr
+
+outliers = df[(df['Amount'] < lower_bound) | (df['Amount'] > upper_bound)]
+print(f"Lower bound: ${lower_bound:.2f}")
+print(f"Upper bound: ${upper_bound:.2f}")
+print(f"Flagged outliers: {len(outliers)}")
+print(outliers[['Date', 'Category', 'Amount']])
+```
+
+PART 4: INTERPRETATION (20 seconds)
+-------------------------------------
+- Look at the flagged rows
+- Explain why each one stands out (too high, too low)
+- Mention whether they look like errors or valid extremes
+- Emphasize that detection is not the same as removal
+
+Example narration:
+"Looking at the flagged rows: a $1,850 amount under Groceries is extremely 
+high compared to other grocery transactions and may be an entry error or a 
+very large bulk purchase. A $0.50 entertainment transaction is suspiciously 
+low — possibly a test entry. These need to be investigated, not immediately 
+removed. Outlier detection is the first step — understanding comes next."
+
+TECHNICAL REQUIREMENTS
+-----------------------
+
+Screen Recording Setup:
+- Full screen of your terminal / IDE / Jupyter notebook
+- All text must be clearly readable (zoom in if needed)
+- No camera required (screen-only recording is fine)
+- Clear audio narration
+
+Recommended Code Flow:
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load data
+df = pd.read_csv('sample_transactions.csv')
+
+# Step 1: Describe the column
+print(df['Amount'].describe())
+
+# Step 2: Boxplot
+plt.boxplot(df['Amount'])
+plt.title('Amount Distribution')
+plt.show()
+
+# Step 3: IQR Rule
+q1 = df['Amount'].quantile(0.25)
+q3 = df['Amount'].quantile(0.75)
+iqr = q3 - q1
+lower = q1 - 1.5 * iqr
+upper = q3 + 1.5 * iqr
+outliers = df[(df['Amount'] < lower) | (df['Amount'] > upper)]
+print(f"Flagged outliers:\n{outliers[['Date', 'Category', 'Amount']]}")
+
+# Step 4: Interpret
+print("These values stand out because they exceed the expected range.")
+print("Investigation is needed before any action is taken.")
+```
+
+COMMON MISTAKES TO AVOID IN VIDEO
+-----------------------------------
+✗ Do not say you will "delete" or "remove" the outliers
+✗ Do not skip explaining the IQR formula
+✗ Do not rush through the boxplot — point to specific components
+✗ Do not forget to mention context when interpreting flagged rows
+
+NOTES
+------
+- Run the script: python outlier_detection_milestone.py
+  This generates all three plots in outputs/figures/
+- You can use either the script output or a Jupyter notebook for recording
+- Keep narration natural — explain what you see, not just what you do
+
+VIDEO SUBMISSION
+-----------------
+- Submit your video link in the outputs/video_link.txt file
+- Video format: MP4 preferred, or any common screen-recording format
+- Resolution: at least 720p so text is readable
