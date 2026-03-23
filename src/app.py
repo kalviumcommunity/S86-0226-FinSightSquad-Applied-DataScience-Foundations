@@ -11,7 +11,7 @@ Opens at: http://localhost:8080
 Architecture:
     utils.py           – constants, colours, formatters
     data_processing.py – pipeline wrapper + cache
-    charts.py          – Plotly figure builders
+    charts.py          – Matplotlib/Seaborn figure builders
     layout.py          – reusable NiceGUI components + global CSS
     app.py             – page assembly, sidebar, tabs, wiring
 """
@@ -20,6 +20,13 @@ import sys
 import os
 import asyncio
 import datetime
+import io
+import base64
+import re
+from urllib.parse import quote
+
+import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
 
 # ── Path ──────────────────────────────────────────────────────────────────────
 SRC_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -52,8 +59,6 @@ from layout import (
     GLOBAL_CSS,
 )
 
-# ── Plotly chart config  (hide mode-bar for clean look) ───────────────────────
-_CFG = {"displayModeBar": False, "responsive": True}
 # ── Accent colour presets ────────────────────────────────────────────────────
 ACCENT_PRESETS = [
     ("#2563EB", "Blue"),
@@ -65,6 +70,47 @@ ACCENT_PRESETS = [
     ("#D97706", "Amber"),
     ("#E11D48", "Rose"),
 ]
+
+OUTPUT_CHART_DIR = os.path.join(os.path.dirname(SRC_DIR), "output", "charts")
+
+APP_ICON_SVG = f"""
+<svg viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg' fill='none'>
+  <path d='M17.5 10V6.25H4.375A1.875 1.875 0 0 1 4.375 2.5H17.5V6.25H4.375'
+      stroke='{C_ACCENT}' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/>
+  <path d='M2.5 4.375v12.5A1.875 1.875 0 0 0 4.375 18.75H17.5V14.375'
+      stroke='{C_ACCENT}' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/>
+  <path d='M15 10a1.875 1.875 0 0 0 0 3.75h4.375V10H15z'
+      stroke='{C_ACCENT}' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/>
+</svg>
+""".strip()
+APP_ICON_DATA_URI = f"data:image/svg+xml,{quote(APP_ICON_SVG)}"
+
+
+def _slugify(value: str) -> str:
+    """Create a filesystem-safe, readable filename stem."""
+    value = (value or "chart").strip().lower()
+    value = re.sub(r"[^a-z0-9]+", "_", value)
+    return value.strip("_") or "chart"
+
+
+def _render_chart(fig: Figure, style: str = "", filename: str = "chart") -> None:
+    """Render a Matplotlib figure in NiceGUI via an inline PNG image."""
+    os.makedirs(OUTPUT_CHART_DIR, exist_ok=True)
+    file_path = os.path.join(OUTPUT_CHART_DIR, f"{_slugify(filename)}.png")
+
+    # Keep annotations/labels from being clipped near figure edges.
+    fig.tight_layout(pad=1.0)
+
+    # Persist the latest rendered version locally for export/reuse.
+    fig.savefig(file_path, format="png", dpi=140, bbox_inches="tight", pad_inches=0.35)
+
+    buf = io.BytesIO()
+    fig.savefig(buf, format="png", dpi=140, bbox_inches="tight", pad_inches=0.35)
+    plt.close(fig)
+    encoded = base64.b64encode(buf.getvalue()).decode("ascii")
+    img = ui.image(f"data:image/png;base64,{encoded}").classes("w-full").props("fit=contain")
+    if style:
+        img.style(style)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Refreshable dashboard  (re-renders only this subtree on data change)
@@ -181,13 +227,13 @@ def _render_overview(df: pd.DataFrame) -> None:
     # Row 1: two charts side by side
     with ui.row().classes("w-full gap-4").style("margin-bottom:16px;"):
         with chart_card("Spending by Category"):
-            ui.plotly(fig_spending_pie(df)).classes("w-full").style("height:340px;")
+            _render_chart(fig_spending_pie(df), "height:460px; object-fit:contain;", "spending_by_category")
         with chart_card("Category Distribution"):
-            ui.plotly(fig_treemap(df)).classes("w-full").style("height:340px;")
+            _render_chart(fig_treemap(df), "height:340px; object-fit:contain;", "category_distribution")
 
     # Row 2: monthly trend full width
     with chart_card("Monthly Income vs Expenses"):
-        ui.plotly(fig_monthly_trend(df)).classes("w-full").style("height:300px;")
+        _render_chart(fig_monthly_trend(df), "height:430px; object-fit:contain;", "monthly_income_vs_expenses")
 
 
 def _render_categories(df: pd.DataFrame) -> None:
@@ -195,19 +241,19 @@ def _render_categories(df: pd.DataFrame) -> None:
 
     with ui.row().classes("w-full gap-4").style("margin-bottom:16px;"):
         with chart_card("Top Expense Categories"):
-            ui.plotly(fig_top_categories(df)).classes("w-full").style("height:340px;")
+            _render_chart(fig_top_categories(df), "height:340px; object-fit:contain;", "top_expense_categories")
         with chart_card("Spending by Day of Week"):
-            ui.plotly(fig_day_of_week(df)).classes("w-full").style("height:340px;")
+            _render_chart(fig_day_of_week(df), "height:340px; object-fit:contain;", "spending_by_day_of_week")
 
     with chart_card("Monthly Spending Heatmap"):
-        ui.plotly(fig_heatmap(df)).classes("w-full").style("min-height:380px;")
+        _render_chart(fig_heatmap(df), "min-height:380px; object-fit:contain;", "monthly_spending_heatmap")
 
 
 def _render_trends(df: pd.DataFrame) -> None:
     """Trends tab: cumulative balance + monthly summary table."""
 
     with chart_card("Cumulative Balance Over Time"):
-        ui.plotly(fig_cumulative_balance(df)).classes("w-full").style("height:300px;")
+        _render_chart(fig_cumulative_balance(df), "height:300px; object-fit:contain;", "cumulative_balance_over_time")
 
     ui.element("div").style("height:16px;")
 
@@ -347,7 +393,7 @@ def _render_insights(df: pd.DataFrame, net: float) -> None:
         # Left column – gauge + stats
         with ui.element("div").style("flex:1; min-width:0;"):
             with content_card():
-                ui.plotly(fig_savings_gauge(gauge_val, target_pct)).classes("w-full")
+                _render_chart(fig_savings_gauge(gauge_val, target_pct), "height:230px; object-fit:contain;", "savings_rate_gauge")
 
                 divider()
                 ui.element("div").style("height:10px;")
@@ -588,7 +634,7 @@ def _build_settings_dialog(dark_mode_el: ui.dark_mode) -> ui.dialog:
     """Settings modal: theme toggle + accent colour picker."""
 
     # Track which swatch is currently selected
-    _state = {"accent": C_ACCENT, "dark": True}
+    _state = {"accent": C_ACCENT, "dark": False}
     _swatch_els: dict[str, ui.element] = {}
 
     def _apply_accent(color: str) -> None:
@@ -696,8 +742,10 @@ def index() -> None:
 
     # Inject global styles
     ui.add_css(GLOBAL_CSS)
+    ui.add_head_html(f'<link rel="icon" type="image/svg+xml" href="{APP_ICON_DATA_URI}"/>')
     dark_mode_el = ui.dark_mode()
-    dark_mode_el.enable()
+    dark_mode_el.disable()
+    _set_chart_dark(False)
     ui.colors(primary=C_ACCENT)
 
     # Build dialogs (must be created inside the page context)
@@ -711,20 +759,7 @@ def index() -> None:
 
             # Brand
             with ui.row().classes("items-center gap-4 no-wrap"):
-                ui.html(f"""
-                <svg viewBox="0 0 20 20" width="20" height="20" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path d="M17.5 10V6.25H4.375A1.875 1.875 0 0 1 4.375 2.5H17.5V6.25H4.375"
-                        stroke="{C_ACCENT}" stroke-width="1.6"
-                        stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M2.5 4.375v12.5A1.875 1.875 0 0 0 4.375 18.75H17.5V14.375"
-                        stroke="{C_ACCENT}" stroke-width="1.6"
-                        stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M15 10a1.875 1.875 0 0 0 0 3.75h4.375V10H15z"
-                        stroke="{C_ACCENT}" stroke-width="1.6"
-                        stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                """)
+                ui.html(APP_ICON_SVG.replace("<svg ", "<svg width='20' height='20' "))
                 with ui.column().classes("gap-0"):
                     page_title("MoneyMind")
                     page_subtitle("Personal Finance Analytics")
@@ -773,6 +808,7 @@ def index() -> None:
 if __name__ == "__main__":
     ui.run(
         title="MoneyMind",
+        favicon=APP_ICON_DATA_URI,
         port=8080,
         dark=True,
         reload=False,

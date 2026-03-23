@@ -102,10 +102,10 @@ def metric_card(
 @contextmanager
 def chart_card(title: str = ""):
     """
-    Context manager that wraps a Plotly chart in a flat bordered card.
+    Context manager that wraps a chart in a flat bordered card.
     Usage:
         with chart_card("My Chart"):
-            ui.plotly(fig).classes("w-full")
+            ui.image(...).classes("w-full")
     """
     with ui.card().classes("flex-1 w-full mm-card").style(
         "border-radius:6px; padding:16px;"

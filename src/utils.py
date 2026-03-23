@@ -26,7 +26,7 @@ C_TEXT_MUT  = "#94A3B8"   # muted / secondary text
 C_TEXT_DIM  = "#475569"   # disabled / placeholder text
 
 # Accent / semantic
-C_ACCENT    = "#2563EB"   # primary blue accent
+C_ACCENT    = "#059669"   # primary green accent
 C_POSITIVE  = "#059669"   # income / positive delta
 C_NEGATIVE  = "#DC2626"   # expense / negative delta
 C_WARNING   = "#D97706"   # caution
@@ -44,7 +44,7 @@ CHART_PALETTE = [
     "#B45309",  # warm-brown
 ]
 
-# Plotly layout defaults (applied to every chart)
+# Shared chart layout defaults (legacy constants)
 CHART_LAYOUT = dict(
     paper_bgcolor = "rgba(0,0,0,0)",
     plot_bgcolor  = "rgba(0,0,0,0)",

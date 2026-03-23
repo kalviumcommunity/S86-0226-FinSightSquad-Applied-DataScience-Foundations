@@ -68,7 +68,7 @@ MoneyMind/
 ├── src/
 │   ├── app.py                        # NiceGUI entry point — page, header, dialogs, dashboard
 │   ├── layout.py                     # Reusable UI components + global CSS (theme vars)
-│   ├── charts.py                     # 8 Plotly chart builders (theme-adaptive)
+│   ├── charts.py                     # 8 Matplotlib/Seaborn chart builders (theme-adaptive)
 │   ├── utils.py                      # Colour constants, number formatters (fmt_inr, fmt_pct)
 │   ├── data_processing.py            # ETL orchestrator + file-mtime cache + replace_data()
 │   ├── data_loader.py                # CSV loading, alias mapping, split-column merge, validation
@@ -114,19 +114,18 @@ Key uses in MoneyMind:
 
 ---
 
-### Plotly / Plotly Express — Interactive Charts
-**Why:** Plotly charts render natively in the browser with zero extra config.
-Hover tooltips, zoom, pan, and responsive resizing all work out of the box
-inside NiceGUI's `ui.plotly()` component.
+### Matplotlib + Seaborn — Data Science Visualization
+**Why:** Matplotlib and Seaborn are standard Python data science tools for
+analytical charting. They provide reliable static visualizations that are easy
+to style and embed in a Python-first dashboard.
 
 Charts in MoneyMind:
-- `px.pie` — category spending share
-- `px.bar` — monthly trends, top categories, day-of-week
-- `px.area` — cumulative balance
-- `px.imshow` — spending heatmap
-- `go.Indicator` — savings rate gauge
-- All charts share a `_base_layout()` helper for consistent colours and fonts
-- `set_dark(bool)` switches every chart's colour scheme at runtime (called by the theme toggle)
+- `matplotlib.pyplot.pie` — category spending share
+- `seaborn.barplot` + `matplotlib` bars/lines — trends, top categories, day-of-week
+- `matplotlib.fill_between` — cumulative balance area chart
+- `seaborn.heatmap` — spending heatmap
+- Custom `matplotlib` progress-style gauge — savings rate vs target
+- `set_dark(bool)` switches chart colour schemes at runtime
 
 ---
 
@@ -143,7 +142,7 @@ Key NiceGUI features used:
 | `ui.header` | Top bar with Upload CSV, Add Transaction, Settings buttons |
 | `ui.dialog` | Modal dialogs for all three actions above |
 | `ui.upload` with `auto-upload` | In-browser CSV upload, triggers immediately on file select |
-| `ui.plotly` | Embeds interactive Plotly figures in the page |
+| `ui.image` | Embeds rendered Matplotlib figures in the page |
 | `ui.dark_mode()` | Programmatic dark/light theme switching |
 | `ui.colors(primary=…)` | Live accent colour changes without page reload |
 | `@ui.refreshable` | Re-renders only the dashboard section when new data is loaded |
@@ -317,12 +316,12 @@ python data/generate_more_samples.py
 
 ### `src/layout.py` — UI Components & CSS
 - `metric_card(label, value, delta, positive)` — KPI summary card with delta indicator
-- `chart_card(title)` — Styled card wrapping a Plotly chart
+- `chart_card(title)` — Styled card wrapping a chart image
 - `content_card(title)` — Styled card for text/list content
 - `recommendation_item(text)` — Left-bordered advice block
 - `GLOBAL_CSS` — Full CSS custom property theme system + all `mm-*` component classes
 
-### `src/charts.py` — Plotly Chart Builders
+### `src/charts.py` — Matplotlib/Seaborn Chart Builders
 - `set_dark(bool)` — Switches all charts between dark and light colour scheme; called by the theme toggle
 
 | Function | Chart | Description |
@@ -467,7 +466,8 @@ DINING_ALERT_MULTIPLIER   = 1.5   # flag if dining > 1.5× average
 ```
 pandas>=2.0.0
 numpy>=1.24.0
-plotly>=5.15.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
 nicegui>=2.0.0
 ```
 
