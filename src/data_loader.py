@@ -20,7 +20,11 @@ _COL_ALIASES: dict[str, list[str]] = {
     "amount":           ["transaction amount", "txn amount", "net amount", "debit/credit amount"],
     "description":      ["transaction description", "narration", "particulars", "remarks", "details", "memo",
                          "transaction details", "beneficiary", "payee", "transaction details"],
-    "transaction_type": ["type", "txn type", "dr/cr", "debit/credit", "cr/dr"],
+    "transaction_type": [
+        "type", "txn type", "transaction type", "dr/cr", "debit/credit", "cr/dr",
+        "flow", "money flow", "cash flow", "direction", "direction of transaction",
+        "entry type", "record type", "income/expense", "expense/income", "in/out",
+    ],
     "category":         ["expense category", "spending category"],
 }
 

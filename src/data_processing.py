@@ -89,7 +89,11 @@ def append_row(
     os.makedirs(os.path.dirname(DATA_PATH), exist_ok=True)
     write_header = not os.path.exists(DATA_PATH)
     row.to_csv(DATA_PATH, mode="a", header=write_header, index=False)
-    invalidate_cache()
+    # Keep cache and file in sync so an immediate UI refresh uses fresh data.
+    try:
+        _rebuild()
+    except Exception:
+        invalidate_cache()
 
 
 def replace_data(csv_bytes: bytes) -> tuple[bool, str]:
@@ -123,7 +127,10 @@ def replace_data(csv_bytes: bytes) -> tuple[bool, str]:
 
         os.makedirs(os.path.dirname(DATA_PATH), exist_ok=True)
         df.to_csv(DATA_PATH, index=False)
-        invalidate_cache()
+        try:
+            _rebuild()
+        except Exception:
+            invalidate_cache()
         return True, f"Loaded {len(df):,} transactions."
     except Exception as exc:
         return False, f"Error reading file: {exc}"

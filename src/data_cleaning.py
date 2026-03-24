@@ -86,18 +86,46 @@ def _strip_whitespace(df: pd.DataFrame) -> pd.DataFrame:
 def _parse_dates(df: pd.DataFrame) -> pd.DataFrame:
     """
     Parse the ``date`` column to pandas datetime, handling multiple formats.
-    Tries standard inference first, then dayfirst=True (DD/MM/YYYY bank exports).
+    Slash-based formats are parsed with dayfirst=True (common bank exports).
     Rows with unparsable dates are kept but flagged as NaT.
     """
     original_count = len(df)
-    # Keep raw strings so we can retry failed rows with dayfirst
-    raw_dates = df["date"].astype(str)
-    df["date"] = pd.to_datetime(raw_dates, errors="coerce")
-    still_nat = df["date"].isna()
+    raw_dates = df["date"].astype(str).str.strip()
+
+    parsed = pd.Series(pd.NaT, index=df.index, dtype="datetime64[ns]")
+    slash_mask = raw_dates.str.contains("/", regex=False)
+
+    if (~slash_mask).any():
+        parsed.loc[~slash_mask] = pd.to_datetime(raw_dates.loc[~slash_mask], errors="coerce")
+
+    if slash_mask.any():
+        # DD/MM/YYYY (and DD/MM/YYYY HH:MM:SS) is common in bank exports.
+        parsed.loc[slash_mask] = pd.to_datetime(
+            raw_dates.loc[slash_mask],
+            dayfirst=True,
+            errors="coerce",
+        )
+
+    # Final fallback pass for any still-missing values.
+    still_nat = parsed.isna()
     if still_nat.any():
-        # Retry failed rows with dayfirst=True (handles DD/MM/YYYY)
-        retry = pd.to_datetime(raw_dates[still_nat], dayfirst=True, errors="coerce")
-        df.loc[still_nat, "date"] = retry
+        unresolved = raw_dates.loc[still_nat]
+        unresolved_slash = unresolved.str.contains("/", regex=False)
+
+        if unresolved_slash.any():
+            parsed.loc[unresolved.index[unresolved_slash]] = pd.to_datetime(
+                unresolved.loc[unresolved_slash],
+                dayfirst=True,
+                errors="coerce",
+            )
+
+        if (~unresolved_slash).any():
+            parsed.loc[unresolved.index[~unresolved_slash]] = pd.to_datetime(
+                unresolved.loc[~unresolved_slash],
+                errors="coerce",
+            )
+
+    df["date"] = parsed
     unparsed = df["date"].isna().sum()
     if unparsed > 0:
         print(f"[DataCleaner] Warning: {unparsed}/{original_count} rows have unparsable dates.")
@@ -131,21 +159,52 @@ def _normalise_transaction_type(df: pd.DataFrame) -> pd.DataFrame:
     if "transaction_type" not in df.columns:
         df["transaction_type"] = "debit"
         return df
-    df["transaction_type"] = df["transaction_type"].astype(str).str.lower().str.strip()
-    # Expand common abbreviations / bank-export values
-    _TX_ALIASES = {
-        "cr": "credit", "c": "credit", "in": "credit", "income": "credit",
-        "dr": "debit",  "d": "debit",  "out": "debit", "expense": "debit",
+    df["transaction_type"] = (
+        df["transaction_type"]
+        .astype(str)
+        .str.lower()
+        .str.strip()
+        .str.replace(r"[_\-]+", " ", regex=True)
+        .str.replace(r"\s+", " ", regex=True)
+    )
+
+    # Expand common abbreviations and human-readable variants.
+    _CREDIT_ALIASES = {
+        "credit", "cr", "c", "in", "incoming", "income", "inflow",
+        "deposit", "received", "receive", "salary", "refund", "cashback",
+        "earning", "earnings", "revenue",
     }
-    df["transaction_type"] = df["transaction_type"].replace(_TX_ALIASES)
+    _DEBIT_ALIASES = {
+        "debit", "dr", "d", "out", "outgoing", "outflow", "expense",
+        "expenses", "spend", "spending", "purchase", "payment", "paid",
+        "withdrawal", "withdraw", "transfer out", "sent",
+    }
+
+    def _map_tx_type(raw: str) -> str:
+        if raw in _CREDIT_ALIASES:
+            return "credit"
+        if raw in _DEBIT_ALIASES:
+            return "debit"
+        # Handle noisy labels like "income credited" / "money outgoing".
+        if any(tok in raw for tok in ["credit", "income", "incoming", "inflow", "deposit", "received"]):
+            return "credit"
+        if any(tok in raw for tok in ["debit", "expense", "spend", "outgoing", "outflow", "withdraw", "paid"]):
+            return "debit"
+        return ""
+
+    mapped = df["transaction_type"].apply(_map_tx_type)
     valid = {"debit", "credit"}
-    mask_invalid = ~df["transaction_type"].isin(valid)
+    mask_invalid = ~mapped.isin(valid)
     if mask_invalid.sum() > 0:
+        # Infer from amount sign where possible before defaulting to debit.
+        inferred = np.where(df.loc[mask_invalid, "amount"] > 0, "credit", "debit")
+        mapped.loc[mask_invalid] = inferred
         print(
-            f"[DataCleaner] Warning: {mask_invalid.sum()} rows have unrecognised "
-            "transaction_type — defaulting to 'debit'."
+            f"[DataCleaner] Warning: {mask_invalid.sum()} rows had unrecognised "
+            "transaction_type — inferred using amount sign."
         )
-        df.loc[mask_invalid, "transaction_type"] = "debit"
+
+    df["transaction_type"] = mapped
     return df
 
 

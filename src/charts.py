@@ -177,6 +177,9 @@ def fig_treemap(df: pd.DataFrame) -> Figure:
         data=cat_df,
         x="total_spent",
         y="category",
+        hue="category",
+        dodge=False,
+        legend=False,
         palette=sns.color_palette("Blues", n_colors=len(cat_df)),
         ax=ax,
     )
@@ -294,8 +297,11 @@ def fig_heatmap(df: pd.DataFrame) -> Figure:
 
 def fig_savings_gauge(gauge_val: float, target: float) -> Figure:
     fig, ax = _new_figure(width=7.2, height=3.0)
-    gauge_val = max(0.0, min(100.0, float(gauge_val)))
-    target = max(0.0, min(100.0, float(target)))
+    raw_val = float(gauge_val)
+    raw_target = float(target)
+    # Clamp only for gauge geometry so labels can still show real values.
+    gauge_val = max(0.0, min(100.0, raw_val))
+    target = max(0.0, min(100.0, raw_target))
     t = _theme()
 
     if gauge_val >= target:
@@ -338,8 +344,8 @@ def fig_savings_gauge(gauge_val: float, target: float) -> Figure:
 
     # Title + center stats
     ax.text(0, 0.92, "Savings Rate", ha="center", va="center", color=t["muted"], fontsize=9)
-    ax.text(0, 0.26, f"{gauge_val:.1f}%", ha="center", va="center", color=t["fg"], fontsize=22, fontweight="bold")
-    delta = gauge_val - target
+    ax.text(0, 0.26, f"{raw_val:.1f}%", ha="center", va="center", color=t["fg"], fontsize=22, fontweight="bold")
+    delta = raw_val - raw_target
     delta_col = C_POSITIVE if delta >= 0 else C_NEGATIVE
     delta_sym = "+" if delta >= 0 else ""
     ax.text(0, 0.10, f"{delta_sym}{delta:.1f}%", ha="center", va="center", color=delta_col, fontsize=11)

@@ -605,16 +605,19 @@ def _build_add_txn_dialog() -> ui.dialog:
                 norm_date = raw_date.replace("/", "-")
                 category  = "" if cat_in.value == "Auto-detect" else str(cat_in.value)
 
-                append_row(
-                    date=norm_date, description=desc,
-                    amount=amt, category=category,
-                    tx_type=str(type_in.value),
-                )
-                render_dashboard.refresh()
-                dlg.close()
-                ui.notify(f"Added ₹{amt:,.2f} — {desc}", type="positive")
-                desc_in.value = ""
-                amt_in.value  = 0
+                try:
+                    append_row(
+                        date=norm_date, description=desc,
+                        amount=amt, category=category,
+                        tx_type=str(type_in.value),
+                    )
+                    render_dashboard.refresh()
+                    dlg.close()
+                    ui.notify(f"Added ₹{amt:,.2f} — {desc}", type="positive")
+                    desc_in.value = ""
+                    amt_in.value  = 0
+                except Exception as exc:
+                    ui.notify(f"Could not add transaction: {exc}", type="negative", timeout=6000)
 
             with ui.row().classes("w-full gap-2 justify-end").style("margin-top:8px;"):
                 (ui.button("Cancel", on_click=dlg.close)
