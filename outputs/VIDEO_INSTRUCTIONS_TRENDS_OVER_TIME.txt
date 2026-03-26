@@ -1,0 +1,67 @@
+VIDEO WALKTHROUGH INSTRUCTIONS - TRENDS OVER TIME MILESTONE
+===========================================================
+
+Duration: Approximately 2 minutes
+Format: Screen-capture video
+
+REQUIRED CONTENT:
+-----------------
+
+Your video must demonstrate all of the following:
+
+1. INTRODUCTION (20 seconds)
+   - Explain that the task is to identify trends over time using a line plot
+   - State why temporal order matters in data analysis
+   - Mention that line plots help reveal patterns across a timeline
+
+2. TIME-BASED DATA PREPARATION (30 seconds)
+   - Show the dataset and point out the time column
+   - Explain converting the column to datetime
+   - Show that the data is sorted correctly before plotting
+
+3. LINE PLOT CREATION (35 seconds)
+   - Run the script and show the saved line plot
+   - Explain the x-axis and y-axis clearly
+   - Mention why line plots are useful for continuous time-based data
+
+4. TREND INTERPRETATION (25 seconds)
+   - Describe the overall direction of the trend
+   - Explain the difference between the long-term pattern and short-term changes
+   - Avoid making any forecasting claims
+
+5. CHANGES AND ANOMALIES (20 seconds)
+   - Point out the sharpest spike or drop in the data
+   - Explain that unusual changes raise questions for further investigation
+   - Mention that visuals help identify these patterns quickly
+
+TECHNICAL REQUIREMENTS:
+-----------------------
+
+* Screen must be clearly visible
+* Code and terminal output must be readable
+* Audio should be clear and understandable
+* Show actual script execution
+* Video length: 1.5 to 2.5 minutes
+
+SUGGESTED TALK TRACK:
+---------------------
+
+"I am demonstrating how to identify trends over time using a line plot. First,
+I load a dataset with a date column and convert it to datetime so the analysis
+uses the correct temporal order. Then I create a line plot to visualize how the
+savings balance changes from month to month. The chart shows an overall upward
+trend, but it also reveals a sharp drop that stands out as an unusual movement.
+This is useful in exploratory analysis because it helps us see both long-term
+direction and sudden changes without jumping into forecasting."
+
+SUBMISSION:
+-----------
+
+1. Upload your video to the platform required by your course
+2. Ensure the link is accessible
+3. Paste the link into outputs/video_link.txt
+4. Submit as instructed
+
+===========================================================
+Good luck with your video recording!
+===========================================================
