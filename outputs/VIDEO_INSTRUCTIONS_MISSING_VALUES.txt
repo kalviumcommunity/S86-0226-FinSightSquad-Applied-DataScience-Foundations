@@ -1,0 +1,251 @@
+VIDEO WALKTHROUGH INSTRUCTIONS: HANDLING MISSING VALUES MILESTONE
+====================================================================
+
+Total Duration: Approximately 2 minutes
+Format: Screen-capture video (must be screen-facing and clearly visible)
+Tool Suggestions: OBS Studio, Zoom Screen Recording, Loom, or Windows Game Bar
+
+====================================================================
+DETAILED SCRIPT AND TIMING
+====================================================================
+
+SEGMENT 1: INTRODUCTION (0:00 - 0:15)
+--------------------------------------
+Duration: 15 seconds
+
+ON SCREEN:
+- Show VS Code or Python IDE
+- Have the script file visible: handling_missing_values_milestone.py
+- Show the file structure briefly
+
+SCRIPT:
+"Hello! Today I'm demonstrating how to handle missing values in Pandas using 
+drop and fill strategies. Missing data is common in real-world datasets, and 
+how we handle it affects the quality of our analysis. I'll show you when to 
+drop data, when to fill it, and how to make informed decisions."
+
+ACTIONS:
+- Show the script file in the editor
+- Briefly scroll to show the structure
+
+
+SEGMENT 2: IDENTIFYING AND DROPPING MISSING VALUES (0:15 - 0:50)
+-----------------------------------------------------------------
+Duration: 35 seconds
+
+ON SCREEN:
+- Run the script (or show pre-run output)
+- Navigate to Section 2 and Section 3
+- Highlight the missing value detection and drop strategies
+
+SCRIPT:
+"First, I identify missing values using isnull(). Look at this financial 
+dataset - we have missing values in Category, Amount, Payment_Method, and Store 
+columns. Notice the counts and percentages here.
+
+Now for dropping strategies. If I use dropna() without parameters, I lose 60% 
+of my data - that's too aggressive! Instead, I'll drop only rows where the 
+Amount column is missing, because amount is critical for financial analysis. 
+See? This removes only 3 rows instead of 6, preserving more data while keeping 
+data quality high."
+
+ACTIONS:
+1. Point to the missing value counts in Section 2
+2. Show the original shape: (10, 5)
+3. Show the dropna() result: only 4 rows remain
+4. Highlight the dropna(subset=['Amount']) approach
+5. Show the new shape after strategic dropping
+
+KEY POINTS TO EMPHASIZE:
+- "Amount is a critical column - we can't analyze without it"
+- "Shape went from (10, 5) to (7, 5) - much better than (4, 5)"
+- "Always check the impact before committing to a strategy"
+
+
+SEGMENT 3: FILLING MISSING VALUES (0:50 - 1:35)
+------------------------------------------------
+Duration: 45 seconds
+
+ON SCREEN:
+- Navigate to Section 4 (Fill Strategies)
+- Show examples of different fill methods
+- Display the final clean dataset
+
+SCRIPT:
+"Now let's fill the remaining missing values. For categorical columns like 
+Category, I fill with meaningful constants like 'Unknown' - never use numbers 
+for text data!
+
+For the Amount column, I could use mean or median. The mean is $110.89, but 
+median is better at $111.88 because it's not affected by outliers. This is 
+important in financial data where you might have extreme values.
+
+For Payment_Method, I use the mode - that's the most frequent value, which is 
+'Cash' in this dataset. This makes sense for categorical data.
+
+Here's my final clean dataset: I dropped rows where Amount was missing - 
+that's critical data. Then I filled Category with 'Unknown', Payment_Method 
+with the mode, and Store with 'Not Specified'. Now I have 7 complete rows 
+ready for analysis."
+
+ACTIONS:
+1. Show the fill with constant example for Category
+2. Point out the mean vs median values
+3. Show the mode filling for Payment_Method
+4. Display Section 5: the comprehensive clean dataset
+5. Show "Missing values remaining: 0" for all columns
+
+KEY POINTS TO EMPHASIZE:
+- "Median is better than mean for skewed distributions"
+- "Use meaningful constants for categorical data"
+- "Mode makes sense when you want the most common category"
+- "Final dataset has 7 rows, all complete"
+
+
+SEGMENT 4: COMPARISON AND DECISION-MAKING (1:35 - 2:00)
+--------------------------------------------------------
+Duration: 25 seconds
+
+ON SCREEN:
+- Show Section 5: Comparing Strategies
+- Display the decision-making guidelines
+- Show the summary section
+
+SCRIPT:
+"Let's compare our strategies. The aggressive dropna() kept only 4 rows - 60% 
+data loss. My strategic approach kept 7 rows - just 30% loss. The fill-only 
+approach keeps all 10 rows but requires assumptions about critical columns.
+
+The key takeaway: always choose based on data importance. Drop critical columns 
+with missing values, fill non-critical ones with appropriate methods. Document 
+your decisions, verify results, and always think about how it affects your 
+analysis. This approach ensures data quality without unnecessary data loss."
+
+ACTIONS:
+1. Show the comparison table in Section 5
+2. Point to the shape comparisons
+3. Quickly show the decision guidelines
+4. End on the summary screen
+
+KEY POINTS TO EMPHASIZE:
+- "Drop critical columns, fill non-critical ones"
+- "My approach balanced data retention with quality"
+- "Always verify and document your decisions"
+
+
+====================================================================
+OVERALL TIPS FOR RECORDING
+====================================================================
+
+BEFORE RECORDING:
+□ Run the script once to ensure no errors
+□ Adjust zoom level for readability (125% recommended)
+□ Close unnecessary applications and tabs
+□ Prepare your speaking points
+□ Position the most important sections for easy navigation
+
+DURING RECORDING:
+□ Speak clearly and at a moderate pace (not too fast!)
+□ Point out key numbers and values explicitly
+□ Explain WHY you made each decision, not just WHAT you did
+□ Show both code and output when possible
+□ Use phrases like "Notice that..." and "This is important because..."
+
+EDITING (OPTIONAL):
+□ Add simple text overlays for key concepts if desired
+□ Include timestamps if helpful
+□ Trim any long pauses or mistakes
+□ Ensure audio is clear and consistent
+
+WHAT TO ABSOLUTELY INCLUDE:
+✅ Original dataset with missing values (show the NaN values)
+✅ Missing value counts and percentages
+✅ Shape comparison (10 rows → 4 rows → 7 rows)
+✅ Drop strategy with subset=['Amount']
+✅ Fill strategies: constant, median, mode
+✅ Final clean dataset
+✅ Explanation of why you chose each strategy
+
+WHAT TO AVOID:
+❌ Don't just read the code line by line
+❌ Don't skip the comparison section
+❌ Don't forget to explain the "why" behind decisions
+❌ Don't rush through the important parts
+❌ Don't leave out the shape before/after comparisons
+
+====================================================================
+SUGGESTED OPENING AND CLOSING
+====================================================================
+
+OPENING HOOK (3-5 seconds):
+"Missing data can destroy your analysis - here's how to handle it responsibly."
+
+CLOSING STATEMENT (3-5 seconds):
+"And that's how you handle missing values with intention and integrity. Thanks 
+for watching!"
+
+====================================================================
+ASSESSMENT CHECKLIST
+====================================================================
+
+Your video will be evaluated on:
+□ Demonstration of drop strategies
+□ Demonstration of fill strategies
+□ Clear before/after shape comparisons
+□ Explanation of decision criteria
+□ Coverage of critical vs non-critical columns
+□ Comparison of strategies
+□ Audio quality and clarity
+□ Screen visibility
+□ Time management (~2 minutes)
+□ Understanding demonstrated through explanations
+
+====================================================================
+COMMON STUDENT MISTAKES TO AVOID
+====================================================================
+
+❌ Showing only code without running it
+❌ Not explaining WHY a strategy was chosen
+❌ Skipping the dataset shape comparisons
+❌ Forgetting to show the final clean dataset
+❌ Not mentioning the trade-offs
+❌ Going too fast through important concepts
+❌ Speaking in monotone or reading verbatim
+❌ Having too small text on screen
+❌ Not testing audio before full recording
+
+✅ Instead: Run the code, show output, explain reasoning, compare results!
+
+====================================================================
+BONUS: ALTERNATIVE 2-MINUTE SCRIPT STRUCTURE
+====================================================================
+
+If you prefer a different flow:
+
+0:00-0:20  Problem Setup
+           "Here's a dataset with missing values - let's handle it."
+           
+0:20-0:45  Drop Approach
+           "First, drop rows where Amount is missing - it's critical."
+           
+0:45-1:20  Fill Approach
+           "Now fill Category, Payment_Method, and Store."
+           
+1:20-1:50  Show Results
+           "Here's the clean dataset - 7 complete rows."
+           
+1:50-2:00  Key Takeaway
+           "Always drop critical columns, fill non-critical ones."
+
+====================================================================
+REMEMBER
+====================================================================
+
+The goal is to demonstrate understanding, not perfection. Show that you:
+1. Can identify missing values
+2. Know when to drop vs fill
+3. Can apply appropriate filling methods
+4. Understand the impact of your decisions
+5. Can explain your reasoning
+
+Good luck! Your clear explanation matters more than fancy editing.

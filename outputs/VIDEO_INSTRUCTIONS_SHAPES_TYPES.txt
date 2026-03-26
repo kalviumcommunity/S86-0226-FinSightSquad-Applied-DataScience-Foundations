@@ -1,0 +1,181 @@
+VIDEO RECORDING INSTRUCTIONS
+Understanding Data Shapes and Column Data Types Milestone
+
+Duration: ~2 minutes
+Format: Screen capture with clear visibility
+
+=============================================================================
+VIDEO STRUCTURE
+=============================================================================
+
+Introduction (15 seconds)
+-------------------------
+✓ "Hello! Today I'll demonstrate understanding DataFrame shapes and column 
+   data types in Pandas."
+✓ Show the data_shapes_types_milestone.py file in your editor
+
+Section 1: Inspecting DataFrame Shape (30 seconds)
+--------------------------------------------------
+✓ Run the script: python scripts/data_shapes_types_milestone.py
+✓ Show the output of Section 1
+✓ Point out and explain:
+  - "The shape property returns a tuple (rows, columns)"
+  - "We have X rows - these are our transaction records"
+  - "We have Y columns - these are the attributes of each transaction"
+  - "This tells us the size of our dataset before we do anything"
+
+Section 2: Understanding Rows and Columns (25 seconds)
+------------------------------------------------------
+✓ Scroll to Section 2 output
+✓ Explain:
+  - "Each row represents one observation - in our case, one transaction"
+  - "Each column is a feature or variable - like Date, Amount, Category"
+  - "Understanding this structure helps us frame our analysis"
+
+Section 3: Column Data Types (30 seconds)
+-----------------------------------------
+✓ Show Section 3 output
+✓ Explain the different data types visible:
+  - "object type means text or categorical data"
+  - "float64 means decimal numbers - perfect for monetary amounts"
+  - "int64 would be whole numbers"
+  - "These types determine what operations we can perform"
+
+Section 4: Why Types Matter (20 seconds)
+----------------------------------------
+✓ Show the "Why Types Matter" section
+✓ Demonstrate:
+  - "With correct numeric types, we can calculate mean, sum, max"
+  - "If Amount was stored as string, it would concatenate instead of add"
+  - "This shows why checking types early prevents analysis errors"
+
+Section 5: Detecting Issues (25 seconds)
+----------------------------------------
+✓ Show the "Detecting Type Issues" section
+✓ Explain:
+  - "Always check if numeric data is wrongly stored as object/string"
+  - "Look for missing values that might affect types"
+  - "Check if date columns are stored as text instead of datetime"
+
+Conclusion (15 seconds)
+-----------------------
+✓ Show the Key Takeaways section
+✓ Say: "Remember these four principles:"
+  1. "Always check shape after loading data"
+  2. "Never assume column data types"
+  3. "Shape and types guide all next steps"
+  4. "This prevents downstream errors"
+✓ End with: "Understanding data structure is foundational in Data Science!"
+
+=============================================================================
+RECORDING TIPS
+=============================================================================
+
+Before Recording:
+-----------------
+□ Run the script once to ensure it works
+□ Have the script file open in your editor
+□ Have a terminal window ready
+□ Clear your terminal history
+□ Close unnecessary applications
+□ Increase terminal font size for visibility
+
+During Recording:
+-----------------
+□ Start screen capture (OBS, QuickTime, or built-in)
+□ Record your entire screen or relevant window
+□ Speak clearly and at a moderate pace
+□ Use your mouse to highlight important sections
+□ Pause briefly between sections
+□ Show each output section deliberately
+
+Things to Show:
+--------------
+1. The Python script file (briefly)
+2. Running the command in terminal
+3. Each major output section with explanation
+4. The problematic example section
+5. The key takeaways
+
+Things to Emphasize:
+-------------------
+• The shape tuple format (rows, columns)
+• Why data types matter for calculations
+• How wrong types cause incorrect results
+• The importance of early inspection
+• The workflow: shape → types → inspect → validate
+
+=============================================================================
+SCRIPT EXECUTION COMMAND
+=============================================================================
+
+cd "d:\Kalvium\Simulation work\Sem-4\MoneyMind (Sprint - 3)\S86-0226-FinSightSquad-Applied-DataScience-Foundations"
+
+python scripts/data_shapes_types_milestone.py
+
+=============================================================================
+COMMON MISTAKES TO AVOID
+=============================================================================
+
+❌ Don't rush through the output - let viewers read key points
+❌ Don't skip explaining what rows vs columns mean
+❌ Don't forget to show why types matter (the string concatenation example)
+❌ Don't record with small font size
+❌ Don't mumble or speak too fast
+❌ Don't forget to show the problematic data example
+
+=============================================================================
+VIDEO SUBMISSION CHECKLIST
+=============================================================================
+
+Before submitting, verify:
+□ Video is approximately 2 minutes long
+□ All 5 main sections are covered
+□ Screen is clearly visible and readable
+□ Audio is clear and understandable
+□ Script runs without errors in the video
+□ Key concepts are explained, not just read
+□ You demonstrated rather than just talked about the concepts
+□ Video shows understanding, not just execution
+
+=============================================================================
+SUGGESTED NARRATION EXAMPLES
+=============================================================================
+
+Opening:
+"In this video, I'll demonstrate how to inspect DataFrame shapes and column 
+data types in Pandas - a foundational skill for any data analysis task."
+
+For Shape:
+"When I call df.shape, it returns a tuple. The first number shows we have 
+[X] rows or records, and the second shows [Y] columns or features. This 
+immediately tells me the size of my dataset."
+
+For Types:
+"Looking at the data types, 'object' means text data, while 'float64' means 
+decimal numbers. These types control what operations are valid. For example, 
+I can calculate the average of numeric columns, but not text columns."
+
+For Why It Matters:
+"Notice what happens when Amount is numeric versus when it's a string. With 
+numeric types, sum gives us the total. But with strings, it concatenates 
+them. This is why type inspection is critical before analysis."
+
+Closing:
+"By inspecting shape and types first, we prevent errors later and ensure 
+our analysis is built on a solid foundation. These simple checks save hours 
+of debugging time."
+
+=============================================================================
+FILE OUTPUT LOCATION
+=============================================================================
+
+Save your video link to:
+outputs/video_link_shapes_types.txt
+
+Or follow your instructor's submission guidelines.
+
+=============================================================================
+
+Good luck with your recording! 🎥
+Remember: Demonstrate understanding, not just execution!
