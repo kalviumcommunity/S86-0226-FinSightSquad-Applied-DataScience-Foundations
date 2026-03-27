@@ -1,0 +1,8 @@
+Date,Category,Amount,Type,Payment_Method
+2024-01-01,Groceries,125.5,Expense,Credit Card
+2024-01-05,Transport,45.0,Expense,Cash
+2024-01-10,Entertainment,80.0,Expense,Debit Card
+2024-01-15,Utilities,150.0,Expense,Bank Transfer
+2024-01-20,Groceries,98.75,Expense,Credit Card
+2024-01-25,Healthcare,200.0,Expense,Insurance
+2024-01-30,Entertainment,65.5,Expense,Cash
