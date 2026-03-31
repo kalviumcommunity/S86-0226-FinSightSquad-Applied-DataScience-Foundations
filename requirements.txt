@@ -9,3 +9,6 @@ seaborn>=0.13.0
 
 # NiceGUI dashboard
 nicegui>=2.0.0
+
+# For saving static plotly images
+kaleido>=0.2.1
