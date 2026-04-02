@@ -1,0 +1,305 @@
+VIDEO WALKTHROUGH INSTRUCTIONS: PANDAS DATAFRAMES MILESTONE
+================================================================
+
+Total Duration: Approximately 2 minutes
+Format: Screen-capture video (must be screen-facing and clearly visible)
+Tool Suggestions: OBS Studio, Zoom Screen Recording, Loom, or Windows Game Bar
+
+================================================================
+DETAILED SCRIPT AND TIMING
+================================================================
+
+SEGMENT 1: INTRODUCTION (0:00 - 0:15)
+--------------------------------------
+Duration: 15 seconds
+
+ON SCREEN:
+- Show VS Code or Python IDE
+- Have the script file and CSV file visible in the file explorer
+
+SCRIPT:
+"Hello! Today I'm demonstrating Pandas DataFrames - the fundamental data 
+structure for data analysis in Python. DataFrames are like spreadsheets or 
+database tables, with rows and columns. They're essential for working with 
+real-world data. Let's see how to create them."
+
+ACTIONS:
+- Show the script file: pandas_dataframes_milestone.py
+- Briefly show the data folder structure
+
+
+SEGMENT 2: CREATING DATAFRAME FROM DICTIONARY (0:15 - 0:45)
+-----------------------------------------------------------
+Duration: 30 seconds
+
+ON SCREEN:
+- Navigate to Section 2 of the script
+- Show the dictionary code clearly
+
+SCRIPT:
+"First, let's create a DataFrame from a Python dictionary. Here I have a 
+dictionary with monthly expense data - keys are column names like 'Month', 
+'Income', 'Expenses', and 'Savings'. Each key has a list of values. 
+
+When I convert this to a DataFrame using pd.DataFrame(), the dictionary 
+becomes a nice table structure. See how each key became a column, and the 
+values are organized in rows? This is perfect for programmatic data creation."
+
+ACTIONS:
+1. Scroll to the expenses_dict definition (show the code)
+2. Highlight the pd.DataFrame(expenses_dict) line
+3. Run the script (or show the output)
+4. Point to the printed DataFrame showing columns and rows
+5. Show how column names match dictionary keys
+
+KEY POINTS TO MENTION:
+- Dictionary keys → Column names
+- Dictionary values → Column data
+- All lists must be the same length
+
+
+SEGMENT 3: LOADING DATAFRAME FROM CSV FILE (0:45 - 1:15)
+--------------------------------------------------------
+Duration: 30 seconds
+
+ON SCREEN:
+- Show the CSV file content first
+- Then show the pd.read_csv() code
+- Show the loaded DataFrame
+
+SCRIPT:
+"Now let's load data from an external file - this is how you'll work with 
+real-world data. Here's a CSV file with transaction data. It has columns 
+for Date, Category, Amount, Type, and Payment Method.
+
+Using pd.read_csv(), I can load this file directly into a DataFrame. Pandas 
+automatically detects the headers from the first row. And just like that, 
+our external data is now in Python as a structured DataFrame, ready for 
+analysis."
+
+ACTIONS:
+1. Open sample_transactions.csv in a text editor or Excel (quick view)
+2. Point out the header row and data rows
+3. Go back to the script - show the pd.read_csv() line
+4. Show the output of print(df_transactions)
+5. Point out that headers became column names
+
+KEY POINTS TO MENTION:
+- pd.read_csv() is the most common loading method
+- Headers are auto-detected
+- File paths can be relative or absolute
+
+
+SEGMENT 4: INSPECTING DATAFRAME STRUCTURE (1:15 - 1:45)
+-------------------------------------------------------
+Duration: 30 seconds
+
+ON SCREEN:
+- Show the inspection methods section
+- Display outputs of head(), shape, columns, info()
+
+SCRIPT:
+"After loading data, you should always inspect it. Let me show you the 
+essential methods. 
+
+df.head() shows the first few rows - great for a quick preview. 
+df.shape tells us the dimensions: 7 rows and 5 columns in this case.
+df.columns gives us all column names.
+df.info() provides a comprehensive overview including data types and 
+non-null counts.
+
+These inspection tools help you verify the data loaded correctly and 
+understand its structure before analysis."
+
+ACTIONS:
+1. Show df_transactions.head() output
+2. Point to df.shape output and explain (7, 5)
+3. Show df.columns.tolist() output
+4. Show df.info() output briefly
+5. Optionally show df.describe() for statistics
+
+KEY POINTS TO MENTION:
+- Always inspect after loading
+- head() for quick preview
+- shape for dimensions
+- info() for comprehensive overview
+- These prevent silent errors
+
+
+SEGMENT 5: CONCLUSION (1:45 - 2:00)
+-----------------------------------
+Duration: 15 seconds
+
+ON SCREEN:
+- Show a summary slide or the complete output
+- Can show the README or the final summary section
+
+SCRIPT:
+"And that's it! We've created DataFrames from dictionaries and files, and 
+learned how to inspect them. DataFrames are the backbone of data analysis 
+in Python - master them, and you're ready for data cleaning, analysis, and 
+machine learning. Thanks for watching!"
+
+ACTIONS:
+- Wave or gesture to camera (if face is visible)
+- Show the complete script output scrolled to the summary
+- End with confidence
+
+KEY POINTS TO MENTION:
+- DataFrames are fundamental to Pandas
+- Next steps: data cleaning and analysis
+- Practice with real datasets
+
+
+================================================================
+TECHNICAL SETUP REQUIREMENTS
+================================================================
+
+VIDEO REQUIREMENTS:
+✓ Screen must be clearly visible (1080p recommended)
+✓ Text should be readable (zoom in if needed)
+✓ Use a clear screen recording tool
+✓ Ensure good lighting if showing face
+✓ Minimize background noise
+✓ Test audio quality before final recording
+
+SCREEN SETUP:
+✓ Close unnecessary applications
+✓ Clear desktop for professionalism
+✓ Use a clean, readable font size (14-16pt minimum)
+✓ Dark theme or light theme (whichever is clearer)
+✓ Hide personal information (bookmarks, file names, etc.)
+
+CODE PRESENTATION:
+✓ Use proper indentation
+✓ Ensure code is not cut off at edges
+✓ Run the script to show live output
+✓ Point to specific lines while explaining
+
+PACING:
+✓ Speak clearly and at moderate pace
+✓ Don't rush through code
+✓ Pause briefly between sections
+✓ Use moments of silence for viewer comprehension
+
+
+================================================================
+RECORDING WORKFLOW
+================================================================
+
+PREPARATION (Before Recording):
+1. Run the script once to ensure it works
+2. Prepare your screen (close tabs, adjust window sizes)
+3. Practice the script out loud once
+4. Test your microphone
+5. Prepare screen recording software
+
+RECORDING:
+1. Start screen recording
+2. Take a deep breath
+3. Follow the script above (be natural, don't memorize word-for-word)
+4. Show code and outputs clearly
+5. Point to important parts (use cursor or annotations)
+6. Maintain steady pace
+7. End confidently
+
+POST-RECORDING:
+1. Review the video
+2. Check for:
+   - Audio clarity
+   - Screen visibility
+   - Proper timing
+   - Content completeness
+3. Trim any dead space at start/end
+4. Export in standard format (MP4 recommended)
+5. Upload to required platform
+6. Submit link as instructed
+
+
+================================================================
+TROUBLESHOOTING
+================================================================
+
+If video is too long (>2:15):
+- Speak slightly faster (but stay clear)
+- Reduce pauses between segments
+- Trim introduction or conclusion by 5 seconds
+
+If video is too short (<1:45):
+- Add more explanation during inspection section
+- Show additional inspection methods
+- Explain one more concept in detail
+
+If code doesn't run during recording:
+- Pre-record the output
+- Screenshot outputs beforehand
+- Have backup slides ready
+
+If nervous during recording:
+- Remember: This is a learning exercise, not a professional production
+- Practice in private first
+- If you make a mistake, pause, take a breath, and continue
+- Use a bullet point script rather than memorizing word-for-word
+
+
+================================================================
+SAMPLE ALTERNATIVE SCRIPT (Casual Style)
+================================================================
+
+If you prefer a more casual, conversational style:
+
+"Hey everyone! So today we're looking at Pandas DataFrames. If you've never 
+heard of them, think of them like Excel spreadsheets but in Python. Super 
+powerful for data stuff.
+
+So first up - creating one from a dictionary. Pretty simple - you just have 
+your dictionary with column names as keys, throw it into pd.DataFrame(), 
+and boom, you've got a table.
+
+Next, loading from a file. This is huge because most data you'll work with 
+comes from files, not code. I've got this CSV with some transactions. Use 
+pd.read_csv(), pass in the file path, and it's loaded. Headers become columns 
+automatically. Really neat.
+
+Now the important part - always check your data after loading. Use head() 
+to see the top rows, shape to know how big it is, and info() for the full 
+details. Trust me, this saves so much time debugging later.
+
+And that's pretty much it! DataFrames are everywhere in data science, so 
+getting comfortable with creating and loading them is step one. Alright, 
+see you next time!"
+
+
+================================================================
+SUBMISSION
+================================================================
+
+After completing the video:
+
+1. Upload to specified platform (YouTube, Google Drive, Loom, etc.)
+2. Ensure video is accessible (check sharing settings)
+3. Copy the video link
+4. Submit the link as per course instructions
+5. Double-check link works before final submission
+
+Video Link Template:
+Platform: [YouTube/Google Drive/Loom/etc.]
+Link: [Your video URL]
+Duration: [X minutes Y seconds]
+Date Recorded: [Date]
+
+
+================================================================
+GOOD LUCK!
+================================================================
+
+Remember: 
+- Be yourself
+- Stay clear and concise
+- Show enthusiasm for the topic
+- Don't aim for perfection - aim for clarity
+- You've got this! 🎬
+
+The goal is to demonstrate understanding, not to create a Hollywood 
+production. Focus on explaining the concepts clearly and showing the 
+code working correctly.
