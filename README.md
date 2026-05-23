@@ -1,5 +1,7 @@
 ﻿# MoneyMind — Personal Finance Dashboard
 
+> **Version 1.0.0** | Last Updated: May 2026
+
 A production-ready personal finance analyzer built entirely in Python.  
 Upload any bank export CSV, and MoneyMind automatically cleans, categorizes, and
 visualizes your transactions in a real-time interactive dashboard — with savings
@@ -20,6 +22,8 @@ recommendations, trend analysis, and a fully themed UI.
 9. [Dashboard Tabs](#dashboard-tabs)
 10. [Settings & Theming](#settings--theming)
 11. [Extending the Project](#extending-the-project)
+12. [Contributing](#contributing)
+13. [License](#license)
 
 ---
 
@@ -477,7 +481,35 @@ pip install -r requirements.txt
 
 ---
 
+## Contributing
+
+We welcome contributions! To contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -am 'Add your feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a pull request
+
+### Guidelines
+
+- Maintain the existing code style and structure
+- Add tests for any new features
+- Update the README if adding new functionality
+- Ensure all modules remain Python 3.11+ compatible
+
+---
+
 ## License
 
 MIT — free to use and modify for personal finance projects.
+
+---
+
+## Project Info
+
+**Maintained by:** FinSightSquad (Applied Data Science Foundations)  
+**Status:** Active  
+**Python:** 3.11+  
+
 
